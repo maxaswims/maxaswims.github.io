@@ -1,0 +1,6 @@
+Nom,TTL,Type,Valeur
+maxaswims.fr,900,A,185.199.108.153
+maxaswims.fr,900,A,185.199.109.153
+maxaswims.fr,900,A,185.199.110.153
+maxaswims.fr,900,A,185.199.111.153
+www.maxaswims.fr,900,CNAME,maxaswims.github.io
