@@ -146,7 +146,7 @@ export const HeroSection = () => {
           <p className="animate-fade-up text-lg md:text-xl text-white/90 max-w-xl mx-auto mb-8">
             Des maillots de bain au crochet faits à la main, alliant savoir-faire artisanal et style contemporain.
           </p>
-          <Button className="btn-primary animate-fade-up text-base uppercase tracking-wider px-8 py-3">
+          <Button className="btn-primary btn-pulse animate-fade-up text-base uppercase tracking-wider px-6 py-3 inline-block mx-auto">
             DÉCOUVRIR LA COLLECTION
           </Button>
         </div>

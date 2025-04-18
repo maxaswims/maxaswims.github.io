@@ -18,9 +18,9 @@ export const InstagramFeed = () => {
         <div className="text-center mb-12">
           <h2 className="section-title">Instagram</h2>
           <h3 className="section-heading">NOUS SUIVRE SUR INSTAGRAM</h3>
-          <a 
-            href="https://www.instagram.com/maxa.swims/" 
-            target="_blank" 
+          <a
+            href="https://www.instagram.com/maxa.swims/"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-turquoise hover:text-turquoise-dark transition-colors"
           >
@@ -28,20 +28,20 @@ export const InstagramFeed = () => {
             @maxa.swims
           </a>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {instagramImages.map((image, index) => (
-            <a 
-              key={index} 
-              href="https://www.instagram.com/maxa.swims/" 
-              target="_blank" 
+            <a
+              key={index}
+              href="https://www.instagram.com/maxa.swims/"
+              target="_blank"
               rel="noopener noreferrer"
               className="block overflow-hidden group"
             >
               <div className="relative aspect-square overflow-hidden">
-                <img 
-                  src={image} 
-                  alt={`Instagram post ${index + 1}`} 
+                <img
+                  src={image}
+                  alt={`Instagram post ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-turquoise/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -51,11 +51,9 @@ export const InstagramFeed = () => {
             </a>
           ))}
         </div>
-        
+
         <div className="text-center mt-10">
-          <Button className="btn-secondary uppercase tracking-wider">
-            VOIR PLUS
-          </Button>
+          <Button className="btn-secondary uppercase tracking-wider px-6 py-3 inline-block">VOIR PLUS</Button>
         </div>
       </div>
     </section>

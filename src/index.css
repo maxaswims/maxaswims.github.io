@@ -68,16 +68,141 @@
   height: calc(100vh - var(--navbar-height, 70px)); /* Hauteur de l'écran moins la hauteur de la navbar */
 }
 
+/* Styles de base pour tous les boutons */
+.btn-primary,
+.btn-secondary,
+.btn-coral {
+  @apply rounded-sm px-6 py-3 relative overflow-hidden transition-all duration-300 ease-out;
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet de hover commun à tous les boutons */
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-coral:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Effet de clic commun à tous les boutons */
+.btn-primary:active,
+.btn-secondary:active,
+.btn-coral:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet de ripple au clic */
+.btn-primary::after,
+.btn-secondary::after,
+.btn-coral::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-primary:focus:not(:active)::after,
+.btn-secondary:focus:not(:active)::after,
+.btn-coral:focus:not(:active)::after {
+  animation: ripple 0.6s ease-out;
+}
+
+/* Styles spécifiques pour chaque type de bouton */
 .btn-primary {
-  @apply rounded-sm bg-turquoise px-6 py-3 text-white transition-colors hover:bg-turquoise-dark;
+  @apply bg-turquoise text-white;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #1a858d;
+  --tw-gradient-to: #235d62;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.btn-primary:hover {
+  --tw-gradient-from: #235d62;
+  --tw-gradient-to: #1a858d;
 }
 
 .btn-secondary {
-  @apply rounded-sm border border-turquoise bg-transparent px-6 py-3 text-turquoise transition-colors hover:bg-turquoise/10;
+  @apply border border-turquoise bg-transparent text-turquoise;
+  background-position: 0 0;
+  background-size: 200% 100%;
+  background-image: linear-gradient(to right, transparent 50%, rgba(26, 133, 141, 0.1) 50%);
+  transition: background-position 0.3s ease-out, transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.btn-secondary:hover {
+  background-position: -100% 0;
 }
 
 .btn-coral {
-  @apply rounded-sm bg-coral px-6 py-3 text-white transition-colors hover:bg-coral-dark;
+  @apply bg-coral text-white;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  --tw-gradient-from: #e8837e;
+  --tw-gradient-to: #d25e5e;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.btn-coral:hover {
+  --tw-gradient-from: #d25e5e;
+  --tw-gradient-to: #e8837e;
+}
+
+/* Animation de ripple */
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+/* Animation de pulse pour attirer l'attention */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(26, 133, 141, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(26, 133, 141, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(26, 133, 141, 0);
+  }
+}
+
+/* Classe pour l'animation pulse */
+.btn-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Animation pour le bouton d'ajout au panier */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-card:hover .btn-primary {
+  animation: slideIn 0.3s ease-out forwards;
 }
 
 .section-title {
