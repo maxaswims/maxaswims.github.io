@@ -28,7 +28,8 @@ export const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between px-4 py-3">
           {/* Logo */}
           <div className="flex items-center gap-8">
-            <a href="/" className="text-xl font-light tracking-wider text-turquoise-dark">
+            <a href="/" className="flex items-center gap-2 text-xl font-light tracking-wider text-turquoise-dark">
+              <img src="/MAXAlogo.ico" alt="MAXASWIMS Logo" className="h-8 w-8" />
               MAXASWIMS
             </a>
 
