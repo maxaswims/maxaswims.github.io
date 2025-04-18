@@ -29,10 +29,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - name: Create .nojekyll
+      - name: Create .nojekyll and copy necessary files
         run: |
           touch dist/.nojekyll
           cp CNAME dist/
+          cp public/_headers dist/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
