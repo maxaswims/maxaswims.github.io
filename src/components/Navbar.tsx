@@ -1,4 +1,3 @@
-
 import { ShoppingBag, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
@@ -7,10 +6,10 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+    <nav className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md h-[45px]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 h-full">
         <div className="flex items-center gap-8">
-          <a href="/" className="text-2xl font-semibold text-ocean-900">
+          <a href="/" className="text-lg font-semibold text-ocean-900">
             MAXA.Swims
           </a>
           <div className="hidden md:flex md:gap-6">
@@ -33,12 +32,7 @@ export const Navbar = () => {
               0
             </span>
           </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <Menu className="h-5 w-5" />
           </Button>
         </div>

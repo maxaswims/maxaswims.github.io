@@ -10,8 +10,7 @@ const products = [
     price: 89,
     image: "/lovable-uploads/ef02853e-5145-4c59-8166-3cea60502a2a.png",
     isNew: true,
-    description:
-      "Bikini triangle en coton bio tricoté à la main, coloris bleu marine",
+    description: "Bikini triangle en coton bio tricoté à la main, coloris bleu marine",
   },
   {
     id: 2,
@@ -26,16 +25,14 @@ const products = [
     price: 99,
     image: "/lovable-uploads/e5918497-b4d8-4797-8add-05b82867072e.png",
     isNew: true,
-    description:
-      "Bikini triangle en coton bio avec jupe assortie, coloris rose fuchsia",
+    description: "Bikini triangle en coton bio avec jupe assortie, coloris rose fuchsia",
   },
   {
     id: 4,
     name: "Ensemble Sable",
     price: 149,
     image: "/lovable-uploads/4cbbd094-e709-4da7-85a8-473002e77a23.png",
-    description:
-      "Ensemble bikini triangle avec jupe macramé, coloris beige sable",
+    description: "Ensemble bikini triangle avec jupe macramé, coloris beige sable",
   },
   {
     id: 5,
@@ -50,16 +47,14 @@ const products = [
     price: 129,
     image: "/lovable-uploads/c1f24d5c-c933-42c6-bd8f-fdcdc017b082.png",
     isNew: true,
-    description:
-      "Ensemble bikini et jupe en crochet, coloris orange coucher de soleil",
+    description: "Ensemble bikini et jupe en crochet, coloris orange coucher de soleil",
   },
   {
     id: 7,
     name: "Bikini Coquillage",
     price: 99,
     image: "/lovable-uploads/ead1a078-5868-4934-80c3-0ebc3826b5b0.png",
-    description:
-      "Bikini triangle avec franges décoratives, coloris beige nacré",
+    description: "Bikini triangle avec franges décoratives, coloris beige nacré",
   },
   {
     id: 8,
@@ -111,12 +106,8 @@ const Index = () => {
       <main className="container mx-auto px-4 py-16">
         <section>
           <div className="mb-12 text-center">
-            <span className="text-sm font-medium uppercase tracking-wider text-ocean-600">
-              Collection
-            </span>
-            <h2 className="mt-2 text-3xl font-light text-gray-900 md:text-4xl">
-              Nos créations
-            </h2>
+            <span className="text-sm font-medium uppercase tracking-wider text-ocean-600">Collection</span>
+            <h2 className="mt-2 text-3xl font-light text-gray-900 md:text-4xl">Nos créations</h2>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -128,16 +119,11 @@ const Index = () => {
 
         <section className="mt-24 text-center">
           <div className="mx-auto max-w-2xl">
-            <span className="text-sm font-medium uppercase tracking-wider text-ocean-600">
-              Artisanat
-            </span>
-            <h2 className="mt-2 text-3xl font-light text-gray-900 md:text-4xl">
-              Fait main avec amour
-            </h2>
+            <span className="text-sm font-medium uppercase tracking-wider text-ocean-600">Artisanat</span>
+            <h2 className="mt-2 text-3xl font-light text-gray-900 md:text-4xl">Fait main avec amour</h2>
             <p className="mt-4 text-gray-600">
-              Chaque pièce est méticuleusement créée à la main, alliant
-              savoir-faire traditionnel et design contemporain pour une
-              collection unique et élégante.
+              Chaque pièce est méticuleusement créée à la main, alliant savoir-faire traditionnel et design contemporain
+              pour une collection unique et élégante.
             </p>
           </div>
 
