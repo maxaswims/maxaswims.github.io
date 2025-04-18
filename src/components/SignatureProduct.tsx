@@ -35,16 +35,12 @@ export const SignatureProduct = () => {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="w-full md:w-1/2">
             <picture>
-              {/* Source WebP pour les navigateurs modernes */}
-              <source srcSet="/assets/PICS/Aleesha/IMG_0665.webp" type="image/webp" />
-              {/* Source principale - format HEIC */}
-              <source srcSet="/assets/PICS/Aleesha/IMG_0665.heic" type="image/heic" />
-              {/* Source de secours - format JPG */}
-              <source srcSet="/assets/PICS/Aleesha/IMG_0665.jpg" type="image/jpeg" />
+              {/* Image JPEG principale */}
+              <source srcSet="/assets/PICS/Aleesha/202406.jpeg" type="image/jpeg" />
               {/* Image par défaut si aucune source n'est compatible */}
               <img
                 ref={imgRef}
-                src="/assets/PICS/Aleesha/IMG_0665.jpg"
+                src="/assets/PICS/Aleesha/202406.jpeg"
                 alt="Modèle signature Blue Sky Bikini - Collection 2025"
                 className="w-full max-w-md mx-auto object-cover rounded-sm shadow-md h-[600px]"
                 onLoad={() => console.log("Image chargée via onLoad")}
