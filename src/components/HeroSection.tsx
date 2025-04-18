@@ -1,4 +1,3 @@
-
 import { Button } from "./ui/button";
 
 export const HeroSection = () => {
@@ -15,17 +14,15 @@ export const HeroSection = () => {
             Découvrez notre collection de maillots de bain au crochet, alliant
             élégance artisanale et style contemporain.
           </p>
-          <Button
-            className="mt-8 animate-fade-up bg-ocean-600 px-8 py-6 text-lg hover:bg-ocean-700"
-          >
+          <Button className="mt-8 animate-fade-up bg-ocean-600 px-8 py-6 text-lg hover:bg-ocean-700">
             Découvrir la collection
           </Button>
         </div>
-        <div className="floating-image w-full max-w-md">
+        <div className="floating-image w-full max-w-md mt-3 mb-5">
           <img
             src="/lovable-uploads/41fd9019-a93f-4543-8980-a506092462d5.png"
             alt="Maillot de bain au crochet"
-            className="h-auto w-full rounded-2xl object-cover shadow-2xl"
+            className="h-[500px] w-[300px] rounded-2xl object-cover shadow-2xl mx-auto"
           />
         </div>
       </div>

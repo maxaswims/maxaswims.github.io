@@ -1,4 +1,3 @@
-
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ProductCard } from "@/components/ProductCard";
@@ -11,14 +10,15 @@ const products = [
     price: 89,
     image: "/lovable-uploads/ef02853e-5145-4c59-8166-3cea60502a2a.png",
     isNew: true,
-    description: "Bikini triangle en coton bio tricoté à la main, coloris bleu marine"
+    description:
+      "Bikini triangle en coton bio tricoté à la main, coloris bleu marine",
   },
   {
     id: 2,
     name: "Ensemble Soleil",
     price: 129,
     image: "/lovable-uploads/ce7fcd5c-2235-45db-87b7-1c609481a086.png",
-    description: "Ensemble bikini et jupe en crochet, coloris jaune soleil"
+    description: "Ensemble bikini et jupe en crochet, coloris jaune soleil",
   },
   {
     id: 3,
@@ -26,21 +26,23 @@ const products = [
     price: 99,
     image: "/lovable-uploads/e5918497-b4d8-4797-8add-05b82867072e.png",
     isNew: true,
-    description: "Bikini triangle en coton bio avec jupe assortie, coloris rose fuchsia"
+    description:
+      "Bikini triangle en coton bio avec jupe assortie, coloris rose fuchsia",
   },
   {
     id: 4,
     name: "Ensemble Sable",
     price: 149,
     image: "/lovable-uploads/4cbbd094-e709-4da7-85a8-473002e77a23.png",
-    description: "Ensemble bikini triangle avec jupe macramé, coloris beige sable"
+    description:
+      "Ensemble bikini triangle avec jupe macramé, coloris beige sable",
   },
   {
     id: 5,
     name: "Bikini Ocean Blue",
     price: 89,
     image: "/lovable-uploads/b9856178-a788-46fe-b048-3b1ee4d5206b.png",
-    description: "Bikini triangle en coton bio, coloris bleu océan"
+    description: "Bikini triangle en coton bio, coloris bleu océan",
   },
   {
     id: 6,
@@ -48,14 +50,16 @@ const products = [
     price: 129,
     image: "/lovable-uploads/c1f24d5c-c933-42c6-bd8f-fdcdc017b082.png",
     isNew: true,
-    description: "Ensemble bikini et jupe en crochet, coloris orange coucher de soleil"
+    description:
+      "Ensemble bikini et jupe en crochet, coloris orange coucher de soleil",
   },
   {
     id: 7,
     name: "Bikini Coquillage",
     price: 99,
     image: "/lovable-uploads/ead1a078-5868-4934-80c3-0ebc3826b5b0.png",
-    description: "Bikini triangle avec franges décoratives, coloris beige nacré"
+    description:
+      "Bikini triangle avec franges décoratives, coloris beige nacré",
   },
   {
     id: 8,
@@ -63,17 +67,17 @@ const products = [
     price: 149,
     image: "/lovable-uploads/b1d6cc70-c25b-4289-9385-075652d9e1cb.png",
     isNew: true,
-    description: "Ensemble bikini et jupe macramé, coloris rouge corail"
-  }
+    description: "Ensemble bikini et jupe macramé, coloris rouge corail",
+  },
 ];
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
+
       {/* Instagram Banner */}
-      <div className="fixed left-0 right-0 top-20 z-40 bg-ocean-50/95 backdrop-blur-sm">
+      {/* <div className="fixed left-0 right-0 top-20 z-40 bg-ocean-50/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-4">
             <a
@@ -100,10 +104,10 @@ const Index = () => {
             Commander →
           </a>
         </div>
-      </div>
+      </div> */}
 
       <HeroSection />
-      
+
       <main className="container mx-auto px-4 py-16">
         <section>
           <div className="mb-12 text-center">
@@ -114,7 +118,7 @@ const Index = () => {
               Nos créations
             </h2>
           </div>
-          
+
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((product) => (
               <ProductCard key={product.id} {...product} />
@@ -131,9 +135,9 @@ const Index = () => {
               Fait main avec amour
             </h2>
             <p className="mt-4 text-gray-600">
-              Chaque pièce est méticuleusement créée à la main, alliant savoir-faire
-              traditionnel et design contemporain pour une collection unique et
-              élégante.
+              Chaque pièce est méticuleusement créée à la main, alliant
+              savoir-faire traditionnel et design contemporain pour une
+              collection unique et élégante.
             </p>
           </div>
 
