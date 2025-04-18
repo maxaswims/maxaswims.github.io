@@ -229,6 +229,14 @@
   object-position: center;
 }
 
+/* Classe pour le favicon arrondi */
+.rounded-favicon {
+  border-radius: 50%;
+  border: 2px solid var(--turquoise-color, #1a858d);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0px);

@@ -29,7 +29,11 @@ export const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center gap-8">
             <a href="/" className="flex items-center gap-2 text-xl font-light tracking-wider text-turquoise-dark">
-              <img src="/MAXAlogo.ico" alt="MAXASWIMS Logo" className="h-8 w-8" />
+              <img
+                src="/MAXAlogo.ico"
+                alt="MAXASWIMS Logo"
+                className="h-8 w-8 rounded-full border-2 border-turquoise shadow-sm"
+              />
               MAXASWIMS
             </a>
 
