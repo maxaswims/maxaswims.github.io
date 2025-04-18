@@ -1,18 +1,74 @@
 import { Button } from "./ui/button";
+import { useState, useRef, useEffect } from "react";
 
 export const HeroSection = () => {
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleError = () => {
+        console.error("Erreur de chargement de la vidéo");
+        setVideoError(true);
+      };
+
+      const handleCanPlay = () => {
+        console.log("La vidéo peut être lue");
+        setVideoError(false);
+      };
+
+      video.addEventListener("error", handleError);
+      video.addEventListener("canplay", handleCanPlay);
+
+      // Vérifier si la vidéo peut être lue après un court délai
+      const timeoutId = setTimeout(() => {
+        if (video.readyState === 0) {
+          console.warn("La vidéo n'a pas pu être chargée après le délai");
+          setVideoError(true);
+        }
+      }, 3000);
+
+      return () => {
+        video.removeEventListener("error", handleError);
+        video.removeEventListener("canplay", handleCanPlay);
+        clearTimeout(timeoutId);
+      };
+    }
+  }, []);
   return (
     <section className="hero-section flex items-center justify-center pt-24 md:pt-28">
       <div className="relative w-full h-full">
-        {/* Image héroïque plein écran */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/lovable-uploads/woman-walking-on-beach-with-white-bikini.jpg"
-            alt="Femme marchant sur la plage"
-            className="w-full h-full object-cover"
-          />
+        {/* Vidéo héroïque plein écran */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Image de fond statique comme fallback */}
+          <div className="absolute inset-0">
+            <img
+              src="/lovable-uploads/41fd9019-a93f-4543-8980-a506092462d5.png"
+              alt="Maillot de bain MAXASWIMS"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Vidéo avec attributs pour meilleure compatibilité */}
+          {!videoError && (
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover absolute inset-0 z-10"
+              onError={() => setVideoError(true)}
+            >
+              <source src="/assets/VDO/V1.mp4" type="video/mp4" />
+              <source src="/assets/VDO/V1.mov" type="video/quicktime" />
+            </video>
+          )}
+
           {/* Overlay pour améliorer la lisibilité du texte */}
-          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 z-20 bg-black/30"></div>
         </div>
 
         {/* Contenu superposé */}

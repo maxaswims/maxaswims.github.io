@@ -5,21 +5,22 @@ import { BestSellers } from "@/components/BestSellers";
 import { Testimonials } from "@/components/Testimonials";
 import { LifestyleSection } from "@/components/LifestyleSection";
 import { InstagramFeed } from "@/components/InstagramFeed";
-import { Newsletter } from "@/components/Newsletter";
+// import { Newsletter } from "@/components/Newsletter";
 import { Footer } from "@/components/Footer";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const Index = () => {
-  const [showNewsletter, setShowNewsletter] = useState(false);
+  // Commenté car la newsletter n'est pas encore implémentée
+  // const [showNewsletter, setShowNewsletter] = useState(false);
 
-  // Afficher la popup newsletter après 30 secondes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowNewsletter(true);
-    }, 30000);
+  // // Afficher la popup newsletter après 30 secondes
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowNewsletter(true);
+  //   }, 30000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   return (
     <div className="min-h-screen bg-sand">
@@ -37,11 +38,12 @@ const Index = () => {
 
       <InstagramFeed />
 
-      <Newsletter />
+      {/* Newsletter temporairement désactivée */}
+      {/* <Newsletter /> */}
 
       <Footer />
 
-      {/* Popup Newsletter */}
+      {/* Popup Newsletter - temporairement désactivée
       {showNewsletter && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white max-w-md w-full p-8 rounded-sm relative">
@@ -82,6 +84,7 @@ const Index = () => {
           </div>
         </div>
       )}
+      */}
     </div>
   );
 };
