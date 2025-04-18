@@ -1,0 +1,16 @@
+Images manquantes à créer:
+
+1. woman-walking-on-beach-with-white-bikini.jpg (pour HeroSection)
+2. friends-enjoying-beach-day-together.jpg (pour LifestyleSection)
+3. beach-accessories-flatlay.jpg (pour InstagramFeed)
+4. coconut-drink-on-beach.jpg (pour InstagramFeed)
+5. woman-posing-in-bikini-sunset.jpg (pour InstagramFeed)
+6. beach-volleyball-fun.jpg (pour InstagramFeed)
+7. tropical-flowers-and-bikini.jpg (pour InstagramFeed)
+8. beach-picnic-setup.jpg (pour InstagramFeed)
+9. testimonial-1.jpg (pour Testimonials)
+10. testimonial-2.jpg (pour Testimonials)
+11. testimonial-3.jpg (pour Testimonials)
+
+Ces images sont référencées dans le code mais n'existent pas encore dans le dossier public/lovable-uploads.
+Pour que le site fonctionne correctement, vous devrez ajouter ces images ou modifier les chemins dans le code pour utiliser des images existantes.

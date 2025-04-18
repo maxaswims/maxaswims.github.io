@@ -1,14 +1,8 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -25,29 +19,23 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        ocean: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
+        // Couleurs principales selon le cahier des charges
+        turquoise: {
+          DEFAULT: "#1A858D", // Bleu turquoise profond - couleur principale
+          light: "#A7D1D9", // Bleu ciel clair - éléments secondaires
+          dark: "#235D62", // Vert océan - textes importants
         },
         sand: {
-          50: "#fdf8f6",
-          100: "#f2e8e5",
-          200: "#eaddd7",
-          300: "#e0cec7",
-          400: "#d2bab0",
-          500: "#bfa094",
-          600: "#a18072",
-          700: "#977669",
-          800: "#846358",
-          900: "#43302b",
+          DEFAULT: "#F9F7F4", // Blanc sable - fond principal
+          gold: "#D9C5A0", // Beige doré - accents
+        },
+        coral: {
+          DEFAULT: "#E8837E", // Corail doux - accent pour CTA
+          dark: "#D25E5E", // Rouge doux - alertes et soldes
+        },
+        text: {
+          primary: "#1D2327", // Noir doux - textes principaux
+          secondary: "#8A9399", // Gris moyen - textes secondaires
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -106,5 +94,6 @@ export default {
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

@@ -1,59 +1,105 @@
-import { ShoppingBag, Menu } from "lucide-react";
+import { ShoppingBag, Menu, Search, User } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showPromo, setShowPromo] = useState(true);
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md h-[45px]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 h-full">
-        <div className="flex items-center gap-8">
-          <a href="/" className="text-lg font-semibold text-ocean-900">
-            MAXA.Swims
-          </a>
-          <div className="hidden md:flex md:gap-6">
-            <a href="#" className="text-gray-600 hover:text-ocean-600">
-              Nouveautés
+    <header className="fixed top-0 z-50 w-full">
+      {/* Bannière promotionnelle */}
+      {showPromo && (
+        <div className="bg-turquoise text-white text-center py-1 text-xs md:text-sm relative">
+          <p>Livraison gratuite pour toute commande supérieure à 100€</p>
+          <button
+            type="button"
+            onClick={() => setShowPromo(false)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-white/80 hover:text-white"
+            aria-label="Fermer"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
+      {/* Navigation principale */}
+      <nav className="bg-white/90 backdrop-blur-md shadow-sm">
+        <div className="container mx-auto flex items-center justify-between px-4 py-3">
+          {/* Logo */}
+          <div className="flex items-center gap-8">
+            <a href="/" className="text-xl font-light tracking-wider text-turquoise-dark">
+              MAXASWIMS
             </a>
-            <a href="#" className="text-gray-600 hover:text-ocean-600">
-              Collection
-            </a>
-            <a href="#" className="text-gray-600 hover:text-ocean-600">
-              À propos
-            </a>
+
+            {/* Menu desktop */}
+            <div className="hidden md:flex md:gap-8">
+              <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+                Nouveautés
+              </a>
+              <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+                Best-Sellers
+              </a>
+              <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+                Boutique
+              </a>
+              <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+                Journal
+              </a>
+              <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+                À propos
+              </a>
+            </div>
+          </div>
+
+          {/* Icônes */}
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" className="text-text-primary hover:text-turquoise">
+              <Search className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="text-text-primary hover:text-turquoise">
+              <User className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="relative text-text-primary hover:text-turquoise">
+              <ShoppingBag className="h-5 w-5" />
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-coral text-xs text-white">
+                0
+              </span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-text-primary"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
           </div>
         </div>
+      </nav>
 
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="relative">
-            <ShoppingBag className="h-5 w-5" />
-            <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-ocean-500 text-xs text-white">
-              0
-            </span>
-          </Button>
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <Menu className="h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
+      {/* Menu mobile */}
       {isMenuOpen && (
-        <div className="absolute top-full w-full bg-white/80 backdrop-blur-md md:hidden">
-          <div className="flex flex-col space-y-4 p-4">
-            <a href="#" className="text-gray-600 hover:text-ocean-600">
+        <div className="absolute w-full bg-white shadow-md md:hidden">
+          <div className="flex flex-col space-y-4 p-6">
+            <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
               Nouveautés
             </a>
-            <a href="#" className="text-gray-600 hover:text-ocean-600">
-              Collection
+            <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+              Best-Sellers
             </a>
-            <a href="#" className="text-gray-600 hover:text-ocean-600">
+            <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+              Boutique
+            </a>
+            <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
+              Journal
+            </a>
+            <a href="#" className="text-text-primary hover:text-turquoise text-sm uppercase tracking-wider">
               À propos
             </a>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };

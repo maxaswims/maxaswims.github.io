@@ -2,28 +2,32 @@ import { Button } from "./ui/button";
 
 export const HeroSection = () => {
   return (
-    <section className="hero-section flex items-center justify-center px-4 pt-8">
-      <div className="container mx-auto flex flex-col items-center gap-8 md:flex-row md:justify-between">
-        <div className="max-w-xl text-center md:text-left">
-          <h1 className="animate-fade-down text-4xl font-light tracking-tight text-ocean-900 md:text-6xl">
-            Maillots de bain au crochet
-            <br />
-            <span className="font-medium">faits à la main</span>
-          </h1>
-          <p className="mt-6 animate-fade-up text-lg text-gray-600">
-            Découvrez notre collection de maillots de bain au crochet, alliant élégance artisanale et style
-            contemporain.
-          </p>
-          <Button className="mt-8 animate-fade-up bg-ocean-600 px-8 py-6 text-lg hover:bg-ocean-700">
-            Découvrir la collection
-          </Button>
-        </div>
-        <div className="floating-image w-full max-w-md mt-3 mb-5">
+    <section className="hero-section flex items-center justify-center pt-24 md:pt-28">
+      <div className="relative w-full h-full">
+        {/* Image héroïque plein écran */}
+        <div className="absolute inset-0 z-0">
           <img
-            src="/lovable-uploads/41fd9019-a93f-4543-8980-a506092462d5.png"
-            alt="Maillot de bain au crochet"
-            className="h-[500px] w-[300px] rounded-2xl object-cover shadow-2xl mx-auto"
+            src="/lovable-uploads/woman-walking-on-beach-with-white-bikini.jpg"
+            alt="Femme marchant sur la plage"
+            className="w-full h-full object-cover"
           />
+          {/* Overlay pour améliorer la lisibilité du texte */}
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
+
+        {/* Contenu superposé */}
+        <div className="container relative z-10 mx-auto px-4 py-24 md:py-32 lg:py-40 text-center">
+          <h1 className="animate-fade-down text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6">
+            MAXASWIMS
+            <br />
+            <span className="font-normal">L'élégance au fil de l'eau</span>
+          </h1>
+          <p className="animate-fade-up text-lg md:text-xl text-white/90 max-w-xl mx-auto mb-8">
+            Des maillots de bain au crochet faits à la main, alliant savoir-faire artisanal et style contemporain.
+          </p>
+          <Button className="btn-primary animate-fade-up text-base uppercase tracking-wider px-8 py-3">
+            DÉCOUVRIR LA COLLECTION
+          </Button>
         </div>
       </div>
     </section>

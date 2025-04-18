@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -33,13 +34,27 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: "Cormorant Garamond", serif;
+    @apply bg-sand text-text-primary antialiased;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", serif;
+    @apply font-light tracking-wide;
+  }
+
+  .title-uppercase {
+    @apply uppercase tracking-widest;
   }
 }
 
 .product-card {
-  @apply relative overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-md;
+  @apply relative overflow-hidden rounded-sm bg-white shadow-sm transition-all duration-300 hover:shadow-md;
 }
 
 .product-image {
@@ -47,7 +62,27 @@
 }
 
 .hero-section {
-  @apply relative min-h-[80vh] w-full overflow-hidden bg-gradient-to-r from-ocean-50 to-ocean-100;
+  @apply relative min-h-[90vh] w-full overflow-hidden bg-sand;
+}
+
+.btn-primary {
+  @apply rounded-sm bg-turquoise px-6 py-3 text-white transition-colors hover:bg-turquoise-dark;
+}
+
+.btn-secondary {
+  @apply rounded-sm border border-turquoise bg-transparent px-6 py-3 text-turquoise transition-colors hover:bg-turquoise/10;
+}
+
+.btn-coral {
+  @apply rounded-sm bg-coral px-6 py-3 text-white transition-colors hover:bg-coral-dark;
+}
+
+.section-title {
+  @apply mb-2 text-sm font-medium uppercase tracking-widest text-turquoise;
+}
+
+.section-heading {
+  @apply mb-6 text-3xl font-light md:text-4xl;
 }
 
 .floating-image {
