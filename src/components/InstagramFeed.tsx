@@ -1,14 +1,24 @@
 import { Instagram } from "lucide-react";
 import { Button } from "./ui/button";
 
-// Images Instagram simulées
+// Images Instagram réelles
 const instagramImages = [
-  "/lovable-uploads/beach-accessories-flatlay.jpg",
-  "/lovable-uploads/coconut-drink-on-beach.jpg",
-  "/lovable-uploads/woman-posing-in-bikini-sunset.jpg",
-  "/lovable-uploads/beach-volleyball-fun.jpg",
-  "/lovable-uploads/tropical-flowers-and-bikini.jpg",
-  "/lovable-uploads/beach-picnic-setup.jpg",
+  "/assets/PICS/Sandy/iG/202402.jpg",
+  "/assets/PICS/Sandy/iG/202403.jpg",
+  "/assets/PICS/Sandy/iG/202404.jpg",
+  "/assets/PICS/Sandy/iG/202408.jpg",
+  "/assets/PICS/Sandy/iG/202409.jpg",
+  "/assets/PICS/Sandy/iG/202414.jpg",
+];
+
+// Descriptions pour chaque image
+const instagramDescriptions = [
+  "Bikini triangle en coton bio, modèle Coral Reef",
+  "Ensemble plage parfait pour les vacances d'été",
+  "Détail du tricot artisanal de nos maillots",
+  "Journée parfaite à la plage avec MAXASWIMS",
+  "Accessoires essentiels pour un look de plage complet",
+  "Collection été 2024 - Nouveaux modèles disponibles",
 ];
 
 export const InstagramFeed = () => {
@@ -41,7 +51,7 @@ export const InstagramFeed = () => {
               <div className="relative aspect-square overflow-hidden">
                 <img
                   src={image}
-                  alt={`Instagram post ${index + 1}`}
+                  alt={instagramDescriptions[index]}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-turquoise/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -53,7 +63,7 @@ export const InstagramFeed = () => {
         </div>
 
         <div className="text-center mt-10">
-          <Button className="btn-secondary uppercase tracking-wider px-6 py-3 inline-block">VOIR PLUS</Button>
+          <Button className="btn-secondary uppercase tracking-wider w-auto">VOIR PLUS</Button>
         </div>
       </div>
     </section>

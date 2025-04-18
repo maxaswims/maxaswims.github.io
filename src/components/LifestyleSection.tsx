@@ -7,8 +7,8 @@ export const LifestyleSection = () => {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="w-full md:w-1/2">
             <img
-              src="/lovable-uploads/friends-enjoying-beach-day-together.jpg"
-              alt="L'univers MAXASWIMS"
+              src="/assets/PICS/Sandy/iG/202407.jpg"
+              alt="L'univers MAXASWIMS - Style de vie balnéaire"
               className="w-full h-[500px] object-cover rounded-sm shadow-md"
             />
           </div>
@@ -22,7 +22,7 @@ export const LifestyleSection = () => {
               artisanales transmises de génération en génération. Chaque pièce raconte une histoire d'élégance, de
               savoir-faire et de respect pour l'environnement.
             </p>
-            <Button className="btn-secondary uppercase tracking-wider px-6 py-3 inline-block">EN SAVOIR PLUS</Button>
+            <Button className="btn-secondary uppercase tracking-wider w-auto">EN SAVOIR PLUS</Button>
           </div>
         </div>
       </div>

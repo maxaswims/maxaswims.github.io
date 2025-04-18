@@ -4,33 +4,33 @@ import { ProductCard } from "./ProductCard";
 const bestSellers = [
   {
     id: 1,
-    name: "Bikini Triangle Marine",
+    name: "Bikini Coral Reef",
     price: 89,
-    image: "/lovable-uploads/ef02853e-5145-4c59-8166-3cea60502a2a.png",
+    image: "/assets/PICS/Sandy/iG/202405.jpg",
     isNew: false,
-    description: "Bikini triangle en coton bio tricoté à la main, coloris bleu marine",
+    description: "Bikini triangle en coton bio tricoté à la main, modèle signature",
   },
   {
     id: 2,
-    name: "Ensemble Soleil",
+    name: "Ensemble Sunset Dream",
     price: 129,
-    image: "/lovable-uploads/ce7fcd5c-2235-45db-87b7-1c609481a086.png",
-    description: "Ensemble bikini et jupe en crochet, coloris jaune soleil",
+    image: "/assets/PICS/Sandy/iG/202413.jpg",
+    description: "Ensemble bikini et paréo en crochet, parfait pour les soirées d'été",
   },
   {
     id: 3,
-    name: "Bikini Pink Summer",
+    name: "Bikini Ocean Blue",
     price: 99,
-    image: "/lovable-uploads/e5918497-b4d8-4797-8add-05b82867072e.png",
-    isNew: false,
-    description: "Bikini triangle en coton bio avec jupe assortie, coloris rose fuchsia",
+    image: "/assets/PICS/Sandy/iG/202417.jpg",
+    isNew: true,
+    description: "Bikini triangle en coton bio, inspiration océanique pour un style unique",
   },
   {
     id: 4,
-    name: "Ensemble Sable",
+    name: "Ensemble Beach Day",
     price: 149,
-    image: "/lovable-uploads/4cbbd094-e709-4da7-85a8-473002e77a23.png",
-    description: "Ensemble bikini triangle avec jupe macramé, coloris beige sable",
+    image: "/assets/PICS/Sandy/iG/202418.jpg",
+    description: "Ensemble complet pour une journée parfaite à la plage, confort et élégance",
   },
 ];
 
@@ -42,7 +42,7 @@ export const BestSellers = () => {
           <h2 className="section-title">Collection</h2>
           <h3 className="section-heading">NOS BEST-SELLERS</h3>
         </div>
-        
+
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {bestSellers.map((product) => (
             <ProductCard key={product.id} {...product} />

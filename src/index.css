@@ -64,17 +64,19 @@
 
 .hero-section {
   @apply relative w-full overflow-hidden bg-sand;
-  margin-top: var(--navbar-height, 70px); /* Utilise une variable CSS pour la hauteur de la navbar */
-  height: calc(100vh - var(--navbar-height, 70px)); /* Hauteur de l'écran moins la hauteur de la navbar */
+  margin-top: 0; /* Coller à la navbar */
+  padding-top: var(--navbar-height, 70px); /* Espace pour la navbar fixe */
+  height: 100vh; /* Hauteur complète de l'écran */
 }
 
 /* Styles de base pour tous les boutons */
 .btn-primary,
 .btn-secondary,
 .btn-coral {
-  @apply rounded-sm px-6 py-3 relative overflow-hidden transition-all duration-300 ease-out;
+  @apply rounded-md px-6 py-3 relative overflow-hidden transition-all duration-300 ease-out flex items-center justify-center;
   transform: translateY(0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 /* Effet de hover commun à tous les boutons */

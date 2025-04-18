@@ -109,8 +109,8 @@ export const HeroSection = () => {
           {videoError && (
             <div className="absolute inset-0">
               <img
-                src="/lovable-uploads/41fd9019-a93f-4543-8980-a506092462d5.png"
-                alt="Maillot de bain MAXASWIMS"
+                src="/assets/PICS/Sandy/iG/202419.jpg"
+                alt="Maillot de bain MAXASWIMS - Collection été"
                 className="w-full h-full object-cover object-center"
               />
             </div>
@@ -146,7 +146,7 @@ export const HeroSection = () => {
           <p className="animate-fade-up text-lg md:text-xl text-white/90 max-w-xl mx-auto mb-8">
             Des maillots de bain au crochet faits à la main, alliant savoir-faire artisanal et style contemporain.
           </p>
-          <Button className="btn-primary btn-pulse animate-fade-up text-base uppercase tracking-wider px-6 py-3 inline-block mx-auto">
+          <Button className="btn-primary btn-pulse animate-fade-up text-base uppercase tracking-wider mx-auto w-auto">
             DÉCOUVRIR LA COLLECTION
           </Button>
         </div>

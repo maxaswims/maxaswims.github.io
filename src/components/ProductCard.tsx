@@ -41,7 +41,7 @@ export const ProductCard = ({ image, name, price, isNew, description }: ProductC
         {/* Bouton Ajouter au panier qui apparaît au survol */}
         {isHovered && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/10 transition-opacity duration-300">
-            <Button className="btn-primary flex items-center gap-2 px-4 py-2 rounded-sm">
+            <Button className="btn-primary flex items-center gap-2 py-2 rounded-md">
               <ShoppingBag className="h-4 w-4" />
               AJOUTER AU PANIER
             </Button>

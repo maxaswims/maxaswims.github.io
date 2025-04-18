@@ -11,11 +11,18 @@ export const SignatureProduct = () => {
 
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="w-full md:w-1/2">
-            <img
-              src="/lovable-uploads/ef02853e-5145-4c59-8166-3cea60502a2a.png"
-              alt="Modèle signature Blue Sky Bikini"
-              className="w-full max-w-md mx-auto object-cover rounded-sm shadow-md"
-            />
+            <picture>
+              {/* Source principale - format HEIC */}
+              <source srcSet="/assets/PICS/Aleesha/IMG_0665.heic" type="image/heic" />
+              {/* Source de secours - format JPG */}
+              <source srcSet="/assets/PICS/Sandy/iG/202411.jpg" type="image/jpeg" />
+              {/* Image par défaut si aucune source n'est compatible */}
+              <img
+                src="/assets/PICS/Sandy/iG/202411.jpg"
+                alt="Modèle signature Blue Sky Bikini - Collection 2025"
+                className="w-full max-w-md mx-auto object-cover rounded-sm shadow-md h-[600px]"
+              />
+            </picture>
           </div>
 
           <div className="w-full md:w-1/2 max-w-md mx-auto">
@@ -23,11 +30,15 @@ export const SignatureProduct = () => {
               Notre modèle emblématique, le Blue Sky Bikini, incarne l'essence même de MAXASWIMS. Tricoté à la main avec
               un fil de coton biologique, ce bikini triangle offre un confort incomparable et une élégance intemporelle.
             </p>
+            <p className="text-text-secondary mb-6">
+              Sa teinte bleu ciel évoque les eaux cristallines des plus belles plages du monde, tandis que sa texture
+              unique crée un jeu de lumière subtil qui met en valeur votre silhouette.
+            </p>
             <p className="text-text-secondary mb-8">
               Sa coupe flatteuse s'adapte à toutes les morphologies, tandis que sa finition artisanale en fait une pièce
               unique que vous conserverez saison après saison.
             </p>
-            <Button className="btn-primary uppercase tracking-wider px-6 py-3 inline-block">DÉCOUVRIR</Button>
+            <Button className="btn-primary uppercase tracking-wider w-auto">DÉCOUVRIR</Button>
           </div>
         </div>
       </div>
