@@ -27,6 +27,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.75rem;
+    --navbar-height: 70px; /* Hauteur estimée de la navbar */
   }
 
   * {
@@ -62,7 +63,9 @@
 }
 
 .hero-section {
-  @apply relative min-h-[90vh] w-full overflow-hidden bg-sand;
+  @apply relative w-full overflow-hidden bg-sand;
+  margin-top: var(--navbar-height, 70px); /* Utilise une variable CSS pour la hauteur de la navbar */
+  height: calc(100vh - var(--navbar-height, 70px)); /* Hauteur de l'écran moins la hauteur de la navbar */
 }
 
 .btn-primary {
@@ -87,6 +90,16 @@
 
 .floating-image {
   animation: float 6s ease-in-out infinite;
+}
+
+.hero-video {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 @keyframes float {

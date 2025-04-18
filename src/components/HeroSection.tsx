@@ -4,54 +4,120 @@ import { useState, useRef, useEffect } from "react";
 export const HeroSection = () => {
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      const handleError = () => {
-        console.error("Erreur de chargement de la vidéo");
-        setVideoError(true);
-      };
+    const container = containerRef.current;
 
-      const handleCanPlay = () => {
-        console.log("La vidéo peut être lue");
-        setVideoError(false);
-      };
+    if (!video || !container) return;
 
-      video.addEventListener("error", handleError);
-      video.addEventListener("canplay", handleCanPlay);
+    // Fonction pour forcer la lecture de la vidéo (utile pour iOS)
+    const forcePlay = () => {
+      if (video.paused) {
+        video.play().catch((err) => {
+          console.warn("Impossible de lire la vidéo automatiquement", err);
+        });
+      }
+    };
 
-      // Vérifier si la vidéo peut être lue après un court délai
-      const timeoutId = setTimeout(() => {
-        if (video.readyState === 0) {
-          console.warn("La vidéo n'a pas pu être chargée après le délai");
-          setVideoError(true);
+    // Ajouter un écouteur d'événement pour forcer la lecture lors de l'interaction utilisateur
+    document.addEventListener("click", forcePlay);
+    document.addEventListener("touchstart", forcePlay);
+
+    // Fonction pour centrer la vidéo sur son milieu
+    const centerVideo = () => {
+      try {
+        // Forcer la lecture de la vidéo si elle est en pause
+        if (video.paused) {
+          video.play().catch((err) => {
+            console.warn("Impossible de lire la vidéo automatiquement", err);
+          });
         }
-      }, 3000);
 
-      return () => {
-        video.removeEventListener("error", handleError);
-        video.removeEventListener("canplay", handleCanPlay);
-        clearTimeout(timeoutId);
-      };
-    }
+        // Obtenir les dimensions de la vidéo et du conteneur
+        const videoRatio = video.videoWidth / video.videoHeight;
+        const containerRatio = container.clientWidth / container.clientHeight;
+
+        if (videoRatio > containerRatio) {
+          // La vidéo est plus large que le conteneur (relativement)
+          // On ajuste la hauteur à 100% et on centre horizontalement
+          video.style.height = "100%";
+          video.style.width = "auto";
+          video.style.left = "50%";
+          video.style.top = "0";
+          video.style.transform = "translateX(-50%)";
+        } else {
+          // La vidéo est plus haute que le conteneur (relativement)
+          // On ajuste la largeur à 100% et on centre verticalement
+          video.style.width = "100%";
+          video.style.height = "auto";
+          video.style.top = "50%";
+          video.style.left = "0";
+          video.style.transform = "translateY(-50%)";
+        }
+      } catch (error) {
+        console.error("Erreur lors du centrage de la vidéo", error);
+        setVideoError(true);
+      }
+    };
+
+    // Gestionnaires d'événements
+    const handleError = () => {
+      console.error("Erreur de chargement de la vidéo");
+      setVideoError(true);
+    };
+
+    const handleCanPlay = () => {
+      console.log("La vidéo peut être lue");
+      setVideoError(false);
+      centerVideo();
+    };
+
+    const handleResize = () => {
+      centerVideo();
+    };
+
+    // Ajouter les écouteurs d'événements
+    video.addEventListener("error", handleError);
+    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("loadedmetadata", handleCanPlay);
+    video.addEventListener("loadeddata", handleCanPlay);
+    window.addEventListener("resize", handleResize);
+
+    // Appliquer le centrage initial après un court délai
+    const timeoutId = setTimeout(centerVideo, 500);
+
+    // Nettoyage lors du démontage
+    return () => {
+      video.removeEventListener("error", handleError);
+      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("loadedmetadata", handleCanPlay);
+      video.removeEventListener("loadeddata", handleCanPlay);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("click", forcePlay);
+      document.removeEventListener("touchstart", forcePlay);
+      clearTimeout(timeoutId);
+    };
   }, []);
   return (
-    <section className="hero-section flex items-center justify-center pt-24 md:pt-28">
+    <section className="hero-section flex items-center justify-center">
       <div className="relative w-full h-full">
         {/* Vidéo héroïque plein écran */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           {/* Image de fond statique comme fallback */}
-          <div className="absolute inset-0">
-            <img
-              src="/lovable-uploads/41fd9019-a93f-4543-8980-a506092462d5.png"
-              alt="Maillot de bain MAXASWIMS"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {videoError && (
+            <div className="absolute inset-0">
+              <img
+                src="/lovable-uploads/41fd9019-a93f-4543-8980-a506092462d5.png"
+                alt="Maillot de bain MAXASWIMS"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          )}
 
           {/* Vidéo avec attributs pour meilleure compatibilité */}
-          {!videoError && (
+          <div ref={containerRef} className="absolute inset-0 z-10 overflow-hidden">
             <video
               ref={videoRef}
               autoPlay
@@ -59,20 +125,19 @@ export const HeroSection = () => {
               loop
               playsInline
               preload="auto"
-              className="w-full h-full object-cover absolute inset-0 z-10"
+              className="hero-video"
               onError={() => setVideoError(true)}
             >
               <source src="/assets/VDO/V1.mp4" type="video/mp4" />
-              <source src="/assets/VDO/V1.mov" type="video/quicktime" />
             </video>
-          )}
+          </div>
 
           {/* Overlay pour améliorer la lisibilité du texte */}
           <div className="absolute inset-0 z-20 bg-black/30"></div>
         </div>
 
         {/* Contenu superposé */}
-        <div className="container relative z-10 mx-auto px-4 py-24 md:py-32 lg:py-40 text-center">
+        <div className="container relative z-30 mx-auto px-4 flex flex-col justify-center h-full text-center">
           <h1 className="animate-fade-down text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6">
             MAXASWIMS
             <br />
