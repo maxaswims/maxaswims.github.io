@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/",
+  base: "/", // Ensures assets are loaded from the root path
   build: {
     rollupOptions: {
       output: {
