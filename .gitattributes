@@ -1,0 +1,14 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Définir les types MIME pour les fichiers statiques
+*.js linguist-language=JavaScript
+*.mjs linguist-language=JavaScript
+*.css linguist-language=CSS
+*.html linguist-language=HTML
+*.svg linguist-language=SVG
+*.ico binary
+*.webmanifest linguist-language=JSON
+
+# Traiter les fichiers de build comme binaires
+dist/** binary

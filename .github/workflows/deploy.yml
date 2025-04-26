@@ -34,6 +34,10 @@ jobs:
           touch dist/.nojekyll
           cp CNAME dist/
           cp public/_headers dist/
+          cp public/404.html dist/
+          cp public/manifest.webmanifest dist/
+          cp -r public/assets dist/
+          cp .gitattributes dist/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
