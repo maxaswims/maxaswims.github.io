@@ -25,6 +25,6 @@ cp .gitattributes dist/
 
 # Déploiement avec gh-pages
 echo "🌐 Déploiement sur GitHub Pages..."
-npx gh-pages -d dist
+npx gh-pages -d dist -b main
 
 echo "✅ Déploiement terminé!"
