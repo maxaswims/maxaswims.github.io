@@ -1,3 +1,6 @@
+/*
+  X-Content-Type-Options: nosniff
+
 /manifest.webmanifest
   Content-Type: application/manifest+json
 
@@ -15,3 +18,9 @@
 
 /*.css
   Content-Type: text/css
+
+/*.json
+  Content-Type: application/json
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Script de déploiement manuel pour GitHub Pages
-
 echo "🚀 Début du déploiement..."
+
+# Nettoyage du dossier dist
+rm -rf dist
 
 # Construction du projet
 echo "📦 Construction du projet..."
@@ -17,8 +18,8 @@ echo "📋 Copie des fichiers nécessaires..."
 cp CNAME dist/
 cp public/_headers dist/
 cp public/404.html dist/
-cp public/manifest.webmanifest dist/
-cp public/.htaccess dist/ 2>/dev/null || echo "Aucun fichier .htaccess à copier"
+cp public/manifest.webmanifest dist/manifest.webmanifest
+cp public/.htaccess dist/
 cp -r public/assets dist/ 2>/dev/null || echo "Aucun dossier assets à copier"
 cp .gitattributes dist/
 
