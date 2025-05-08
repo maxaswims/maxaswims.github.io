@@ -7,27 +7,60 @@
 
 @layer base {
   :root {
+    /* Couleurs de base */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 201 96% 32%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --foreground: 0 0% 20%;
+    
+    /* Couleurs principales - Rose */
+    --pink-light: 336 100% 92%;
+    --pink: 336 100% 75%;
+    --pink-medium: 336 100% 68%;
+    --pink-dark: 336 80% 57%;
+    --pink-deep: 336 60% 48%;
+    
+    /* Couleurs secondaires - Sable */
+    --sand-lightest: 35 100% 98%;
+    --sand-light: 40 30% 97%;
+    --sand: 39 33% 91%;
+    --sand-gold: 39 38% 74%;
+    
+    /* Couleurs d'accent - Corail */
+    --coral-light: 5 100% 83%;
+    --coral: 5 100% 76%;
+    --coral-dark: 5 65% 67%;
+    
+    /* Composants UI */
+    --card: var(--sand-light);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --primary: var(--pink);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--sand);
+    --secondary-foreground: var(--foreground);
+    --muted: var(--sand-light);
+    --muted-foreground: 0 0% 60%;
+    --accent: var(--coral);
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Bordures et inputs */
+    --border: var(--sand-gold);
+    --input: var(--sand-light);
+    --ring: var(--pink);
+    
+    /* Arrondis et espacements */
     --radius: 0.75rem;
-    --navbar-height: 70px; /* Hauteur estimée de la navbar */
+    --radius-bubble: 40% 60% 60% 40% / 60% 30% 70% 40%;
+    --radius-blob: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    
+    /* Ombres */
+    --shadow-pink: 0 0 15px rgba(255, 128, 176, 0.5);
+    --shadow-bubble: 0 10px 25px -5px rgba(255, 128, 176, 0.1), 0 8px 10px -6px rgba(255, 128, 176, 0.1);
+    
+    /* Layout */
+    --navbar-height: 70px;
   }
 
   * {
@@ -35,7 +68,7 @@
   }
 
   body {
-    @apply bg-sand text-text-primary antialiased;
+    @apply bg-sand-lightest text-text-primary antialiased;
     font-family: "Montserrat", sans-serif;
   }
 
@@ -47,6 +80,48 @@
   h6 {
     font-family: "Playfair Display", serif;
     @apply font-light tracking-wide;
+  }
+  
+  /* Classes utilitaires pour le nouveau design system */
+  .bg-gradient-pink {
+    background: linear-gradient(135deg, #FF80B0 0%, #E63F7D 100%);
+  }
+  
+  .text-gradient-pink {
+    background: linear-gradient(135deg, #FF80B0 0%, #E63F7D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  
+  .bubble-shape {
+    border-radius: var(--radius-bubble);
+  }
+  
+  .blob-shape {
+    border-radius: var(--radius-blob);
+  }
+  
+  .pink-glow {
+    box-shadow: var(--shadow-pink);
+  }
+  
+  .bubble-shadow {
+    box-shadow: var(--shadow-bubble);
+  }
+  
+  /* Animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-bubble {
+    animation: bubble 2s ease-in-out infinite;
+  }
+  
+  .animate-pulse-pink {
+    animation: pulse-pink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .title-uppercase {

@@ -132,23 +132,49 @@ export const HeroSection = () => {
             </video>
           </div>
 
-          {/* Overlay pour améliorer la lisibilité du texte */}
-          <div className="absolute inset-0 z-20 bg-black/30"></div>
+          {/* Overlay avec dégradé rose pour améliorer la lisibilité du texte */}
+          <div className="absolute inset-0 z-20 bg-gradient-to-b from-pink-dark/40 via-pink/20 to-pink-dark/40"></div>
+          
+          {/* Éléments décoratifs */}
+          <div className="absolute inset-0 z-20 overflow-hidden">
+            {/* Bulles décoratives */}
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-pink/20 blur-xl animate-float"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full bg-pink/10 blur-xl animate-bubble"></div>
+            <div className="absolute top-1/2 right-1/3 w-24 h-24 rounded-full bg-pink/15 blur-lg animate-pulse-pink"></div>
+          </div>
         </div>
 
         {/* Contenu superposé */}
         <div className="container relative z-30 mx-auto px-4 flex flex-col justify-center h-full text-center">
-          <h1 className="animate-fade-down text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6">
-            MAXASWIMS
-            <br />
-            <span className="font-normal">L'élégance au fil de l'eau</span>
-          </h1>
-          <p className="animate-fade-up text-lg md:text-xl text-white/90 max-w-xl mx-auto mb-8">
+          <div className="animate-fade-down">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white mb-2">
+              <span className="text-gradient-pink font-medium">MAXA</span><span className="font-light">SWIMS</span>
+            </h1>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-6 tracking-wide">
+              L'élégance au fil de l'eau
+            </h2>
+          </div>
+          
+          <p className="animate-fade-up text-lg md:text-xl text-white/90 max-w-xl mx-auto mb-8 backdrop-blur-sm bg-pink/10 p-4 rounded-full">
             Des maillots de bain au crochet faits à la main, alliant savoir-faire artisanal et style contemporain.
           </p>
-          <Button className="btn-primary btn-pulse animate-fade-up text-base uppercase tracking-wider mx-auto w-auto">
-            DÉCOUVRIR LA COLLECTION
-          </Button>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up delay-100">
+            <Button variant="bubble" size="lg" className="animate-pulse-pink">
+              DÉCOUVRIR LA COLLECTION
+            </Button>
+            
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/20">
+              NOTRE HISTOIRE
+            </Button>
+          </div>
+          
+          {/* Indicateur de défilement */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="w-8 h-14 rounded-full border-2 border-white flex items-start justify-center p-1">
+              <div className="w-1 h-3 bg-white rounded-full animate-float"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
