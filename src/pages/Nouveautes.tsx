@@ -15,18 +15,28 @@ const Nouveautes = () => {
     '/assets/PICS/Aleesha/Blue/P3Blue22.jpeg',
     '/assets/PICS/Aleesha/Blue/P3Blue9.heic',
     '/assets/PICS/Aleesha/Blue/P3Blue11.heic',
+    '/assets/PICS/Aleesha/Blue/P3Blue12.heic',
+    '/assets/PICS/Aleesha/Blue/P3Blue13.heic',
     '/assets/PICS/Aleesha/Blue/P3Blue14.heic',
+    '/assets/PICS/Aleesha/Blue/P3Blue15.HEIC',
     '/assets/PICS/Aleesha/Blue/P3Blue17.HEIC',
+    '/assets/PICS/Aleesha/Blue/P3Blue24.HEIC',
+    '/assets/PICS/Aleesha/Blue/P3Blue7.heic',
+    '/assets/PICS/Aleesha/Blue/P3Blue8.heic',
   ];
 
-  // Images pour la collection Green (utilisant d'autres images disponibles)
+  // Images pour la collection Green
   const greenImages = [
-    '/assets/PICS/Aleesha/202406.jpeg',
-    '/assets/PICS/Aleesha/521506A9-5820-4E99-99E4-EB65BCC3E73D.jpg',
-    '/assets/PICS/Aleesha/8209480E-683D-439E-8D64-D7D7B720CB9B.jpg',
-    '/assets/PICS/Aleesha/CB1E4E15-05EA-457A-BFB3-BA46936789D5.jpg',
-    '/assets/PICS/Aleesha/FED010A2-C95B-4D91-95E2-55F072A957E4.jpg',
-    '/assets/PICS/Aleesha/IMG_0665.jpg',
+    '/assets/PICS/Aleesha/Green/P1soloGreen24.JPG',
+    '/assets/PICS/Aleesha/Green/P1soloGreen28.JPG',
+    '/assets/PICS/Aleesha/Green/P1soloGreen49.JPG',
+    '/assets/PICS/Aleesha/Green/P1soloGreen57.JPG',
+    '/assets/PICS/Aleesha/Green/P2simoGreen1.HEIC',
+    '/assets/PICS/Aleesha/Green/P2simoGreen14.heic',
+    '/assets/PICS/Aleesha/Green/P2simoGreen15.heic',
+    '/assets/PICS/Aleesha/Green/P2simoGreen16.HEIC',
+    '/assets/PICS/Aleesha/Green/P2simoGreen20.jpg',
+    '/assets/PICS/Aleesha/Green/P2simoGreen8.heic',
   ];
 
   // État pour suivre l'image active dans chaque carrousel
@@ -78,8 +88,8 @@ const Nouveautes = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
+                <CarouselPrevious className="left-2 rounded-full bg-pink-500 text-white hover:bg-pink-600" />
+                <CarouselNext className="right-2 rounded-full bg-pink-500 text-white hover:bg-pink-600" />
               </Carousel>
             </div>
             <div className="p-6">
@@ -87,7 +97,7 @@ const Nouveautes = () => {
               <p className="text-gray-600 mb-4">Notre nouvelle collection inspirée des profondeurs de l'océan. Un bleu intense et rafraîchissant pour un été inoubliable.</p>
               <div className="flex justify-between items-center">
                 <span className="text-xl font-bold">€95.90</span>
-                <Button variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-50">Voir détails</Button>
+                <Button variant="outline" className="border-pink-500 text-pink-500 hover:bg-pink-50 rounded-full">Voir détails</Button>
               </div>
             </div>
           </div>
@@ -109,23 +119,23 @@ const Nouveautes = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
+                <CarouselPrevious className="left-2 rounded-full bg-pink-500 text-white hover:bg-pink-600" />
+                <CarouselNext className="right-2 rounded-full bg-pink-500 text-white hover:bg-pink-600" />
               </Carousel>
             </div>
             <div className="p-6">
               <h3 className="text-2xl font-medium text-gradient-green mb-2">Ensemble Bikini Green</h3>
-              <p className="text-gray-600 mb-4">Une collection fraîche et naturelle inspirée par la beauté de la nature. Des tons verts apaisants pour une élégance estivale.</p>
+              <p className="text-gray-600 mb-4">Notre collection Green inspirée par la nature luxuriante. Des tons verts vibrants pour une allure fraîche et élégante sous le soleil.</p>
               <div className="flex justify-between items-center">
                 <span className="text-xl font-bold">€99.90</span>
-                <Button variant="outline" className="border-green-500 text-green-500 hover:bg-green-50">Voir détails</Button>
+                <Button variant="outline" className="border-pink-500 text-pink-500 hover:bg-pink-50 rounded-full">Voir détails</Button>
               </div>
             </div>
           </div>
         </div>
 
         <div className="text-center">
-          <Button variant="gradient" size="lg" className="animate-pulse-pink">
+          <Button variant="gradient" size="lg" className="animate-pulse-pink rounded-full">
             VOIR TOUTE LA COLLECTION
           </Button>
         </div>
