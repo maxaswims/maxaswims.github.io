@@ -45,19 +45,19 @@ export const Navbar = () => {
       <nav 
         className={`${scrolled ? 'bg-white/95 shadow-md' : 'bg-white/80'} backdrop-blur-md transition-all duration-300`}
       >
-        <div className="container mx-auto flex items-center justify-between px-4 py-3">
+        <div className="container mx-auto flex items-center justify-between px-2 md:px-4 py-2 md:py-3">
           {/* Logo */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-8">
             <a href="/" className="flex items-center gap-2 text-xl font-light tracking-wider hover:opacity-80 transition-opacity">
               <span className="relative">
                 <img
                   src="/MAXALOGO.png"
                   alt="MAXASWIMS Logo"
-                  className="h-10 w-10 rounded-full border-2 border-pink shadow-pink-glow transition-all duration-300 hover:animate-bubble"
+                  className="h-8 w-8 md:h-10 md:w-10 rounded-full border-2 border-pink shadow-pink-glow transition-all duration-300 hover:animate-bubble object-cover"
                 />
-                <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center">
+                <span className="absolute -bottom-1 -right-1 flex h-3 w-3 md:h-4 md:w-4 items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink opacity-30"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-pink"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-pink"></span>
                 </span>
               </span>
               <span className="text-gradient-pink font-medium">MAXA</span><span className="text-text-primary">SWIMS</span>
@@ -89,19 +89,19 @@ export const Navbar = () => {
           </div>
 
           {/* Icônes */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 md:gap-3">
             <Button variant="ghost" size="icon" className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300">
-              <Search className="h-5 w-5" />
+              <Search className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
             <Button variant="ghost" size="icon" className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300">
-              <Heart className="h-5 w-5" />
+              <Heart className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
             <Button variant="ghost" size="icon" className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300">
-              <User className="h-5 w-5" />
+              <User className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
             <Button variant="bubble" size="icon" className="relative text-white hover:text-white">
-              <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-pink-dark text-xs text-white border border-white">
+              <ShoppingBag className="h-4 w-4 md:h-5 md:w-5" />
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-pink-dark text-[10px] md:text-xs text-white border border-white">
                 0
               </span>
             </Button>
@@ -111,7 +111,7 @@ export const Navbar = () => {
               className="md:hidden text-pink-dark hover:bg-pink/10 hover:text-pink"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
           </div>
         </div>
