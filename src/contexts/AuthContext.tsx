@@ -1,15 +1,24 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut, 
+  auth, 
+  db, 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
   onAuthStateChanged,
-  User,
   updateProfile,
-  sendPasswordResetEmail
-} from 'firebase/auth';
-import { auth, db } from '../firebase/config';
-import { doc, setDoc, getDoc, Timestamp } from 'firebase/firestore';
+  sendPasswordResetEmail,
+  Timestamp
+} from '../firebase/config';
+
+// Définir un type User similaire à celui de Firebase
+type User = {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  emailVerified: boolean;
+  photoURL: string | null;
+};
 
 // Définir le type pour le contexte d'authentification
 interface AuthContextType {
@@ -54,13 +63,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // Mettre à jour le profil de l'utilisateur
       await updateProfile(user, { displayName });
       
-      // Créer un document utilisateur dans Firestore
-      await setDoc(doc(db, 'users', user.uid), {
-        displayName,
-        email,
-        createdAt: Timestamp.now(),
-        lastLogin: Timestamp.now()
-      });
+      // Les données utilisateur sont déjà stockées dans notre implémentation locale
+      // Pas besoin d'appeler setDoc et doc car notre implémentation s'en charge
     } catch (error) {
       console.error("Erreur lors de l'inscription:", error);
       throw error;
@@ -71,14 +75,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   async function login(email: string, password: string) {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      
-      // Mettre à jour la date de dernière connexion
-      if (user) {
-        await setDoc(doc(db, 'users', user.uid), {
-          lastLogin: Timestamp.now()
-        }, { merge: true });
-      }
+      // Notre implémentation locale met déjà à jour l'utilisateur courant
     } catch (error) {
       console.error("Erreur lors de la connexion:", error);
       throw error;
@@ -95,36 +92,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return sendPasswordResetEmail(auth, email);
   }
 
-  // Récupérer le profil utilisateur depuis Firestore
+  // Récupérer le profil utilisateur depuis le stockage local
   async function fetchUserProfile(user: User) {
     try {
-      const userDocRef = doc(db, 'users', user.uid);
-      const userDoc = await getDoc(userDocRef);
-      
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        setUserProfile({
-          displayName: userData.displayName || user.displayName || '',
-          email: userData.email || user.email || '',
-          createdAt: userData.createdAt?.toDate() || new Date(),
-          lastLogin: userData.lastLogin?.toDate() || new Date()
-        });
-      } else {
-        // Si le document n'existe pas, créer un nouveau profil
-        const newProfile = {
-          displayName: user.displayName || '',
-          email: user.email || '',
-          createdAt: Timestamp.now(),
-          lastLogin: Timestamp.now()
-        };
-        
-        await setDoc(doc(db, 'users', user.uid), newProfile);
-        setUserProfile({
-          ...newProfile,
-          createdAt: new Date(),
-          lastLogin: new Date()
-        });
-      }
+      // Dans notre implémentation locale, nous pouvons directement utiliser les données de l'utilisateur
+      setUserProfile({
+        displayName: user.displayName || '',
+        email: user.email || '',
+        createdAt: new Date(),
+        lastLogin: new Date()
+      });
     } catch (error) {
       console.error("Erreur lors de la récupération du profil:", error);
     }

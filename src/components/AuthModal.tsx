@@ -44,12 +44,30 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
       await login(email, password);
       onClose();
     } catch (err: unknown) {
-      const firebaseError = err as { code?: string };
-      setError(
-        firebaseError.code === 'auth/user-not-found' || firebaseError.code === 'auth/wrong-password'
-          ? 'Email ou mot de passe incorrect'
-          : 'Erreur de connexion. Veuillez réessayer.'
-      );
+      const firebaseError = err as { code?: string, message?: string };
+      console.error('Détails de l\'erreur de connexion:', firebaseError);
+      
+      // Gérer les différents types d'erreurs Firebase
+      switch(firebaseError.code) {
+        case 'auth/user-not-found':
+        case 'auth/wrong-password':
+          setError('Email ou mot de passe incorrect');
+          break;
+        case 'auth/invalid-email':
+          setError('Adresse email invalide');
+          break;
+        case 'auth/user-disabled':
+          setError('Ce compte a été désactivé');
+          break;
+        case 'auth/too-many-requests':
+          setError('Trop de tentatives de connexion. Veuillez réessayer plus tard.');
+          break;
+        case 'auth/network-request-failed':
+          setError('Problème de connexion réseau. Vérifiez votre connexion internet.');
+          break;
+        default:
+          setError(`Erreur de connexion: ${firebaseError.message || 'Veuillez réessayer'}`);
+      }
     } finally {
       setLoading(false);
     }
@@ -79,12 +97,26 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
       await signup(email, password, displayName);
       onClose();
     } catch (err: unknown) {
-      const firebaseError = err as { code?: string };
-      setError(
-        firebaseError.code === 'auth/email-already-in-use'
-          ? 'Cet email est déjà utilisé'
-          : 'Erreur lors de l\'inscription. Veuillez réessayer.'
-      );
+      const firebaseError = err as { code?: string, message?: string };
+      console.error('Détails de l\'erreur d\'inscription:', firebaseError);
+      
+      // Gérer les différents types d'erreurs Firebase
+      switch(firebaseError.code) {
+        case 'auth/email-already-in-use':
+          setError('Cet email est déjà utilisé');
+          break;
+        case 'auth/invalid-email':
+          setError('Adresse email invalide');
+          break;
+        case 'auth/weak-password':
+          setError('Le mot de passe est trop faible. Il doit contenir au moins 6 caractères.');
+          break;
+        case 'auth/network-request-failed':
+          setError('Problème de connexion réseau. Vérifiez votre connexion internet.');
+          break;
+        default:
+          setError(`Erreur lors de l'inscription: ${firebaseError.message || 'Veuillez réessayer'}`);
+      }
     } finally {
       setLoading(false);
     }
