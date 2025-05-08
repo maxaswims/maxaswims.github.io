@@ -6,7 +6,6 @@ import { Testimonials } from "@/components/Testimonials";
 import { LifestyleSection } from "@/components/LifestyleSection";
 import { InstagramFeed } from "@/components/InstagramFeed";
 // import { Newsletter } from "@/components/Newsletter";
-import { Footer } from "@/components/Footer";
 // import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -40,8 +39,6 @@ const Index = () => {
 
       {/* Newsletter temporairement désactivée */}
       {/* <Newsletter /> */}
-
-      <Footer />
 
       {/* Popup Newsletter - temporairement désactivée
       {showNewsletter && (
