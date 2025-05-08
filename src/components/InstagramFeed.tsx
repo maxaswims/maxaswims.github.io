@@ -32,7 +32,7 @@ export const InstagramFeed = () => {
             href="https://www.instagram.com/maxa.swims/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-turquoise hover:text-turquoise-dark transition-colors"
+            className="inline-flex items-center gap-2 text-pink hover:text-pink-dark transition-colors"
           >
             <Instagram className="h-5 w-5" />
             @maxa.swims
@@ -54,7 +54,7 @@ export const InstagramFeed = () => {
                   alt={instagramDescriptions[index]}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-turquoise/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-pink/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Instagram className="h-8 w-8 text-white" />
                 </div>
               </div>

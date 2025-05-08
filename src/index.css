@@ -195,23 +195,23 @@
 
 /* Styles spécifiques pour chaque type de bouton */
 .btn-primary {
-  @apply bg-turquoise text-white;
+  @apply bg-pink text-white;
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
-  --tw-gradient-from: #1a858d;
-  --tw-gradient-to: #235d62;
+  --tw-gradient-from: #FF80B0; /* Rose principal */
+  --tw-gradient-to: #E63F7D; /* Rose foncé */
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 .btn-primary:hover {
-  --tw-gradient-from: #235d62;
-  --tw-gradient-to: #1a858d;
+  --tw-gradient-from: #E63F7D; /* Rose foncé */
+  --tw-gradient-to: #FF80B0; /* Rose principal */
 }
 
 .btn-secondary {
-  @apply border border-turquoise bg-transparent text-turquoise;
+  @apply border border-pink bg-transparent text-pink;
   background-position: 0 0;
   background-size: 200% 100%;
-  background-image: linear-gradient(to right, transparent 50%, rgba(26, 133, 141, 0.1) 50%);
+  background-image: linear-gradient(to right, transparent 50%, rgba(255, 128, 176, 0.1) 50%);
   transition: background-position 0.3s ease-out, transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 

@@ -51,7 +51,7 @@ export const Navbar = () => {
             <a href="/" className="flex items-center gap-2 text-xl font-light tracking-wider hover:opacity-80 transition-opacity">
               <span className="relative">
                 <img
-                  src="/MAXAlogo.ico"
+                  src="/MAXALOGO.png"
                   alt="MAXASWIMS Logo"
                   className="h-10 w-10 rounded-full border-2 border-pink shadow-pink-glow transition-all duration-300 hover:animate-bubble"
                 />

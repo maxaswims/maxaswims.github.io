@@ -133,7 +133,7 @@ export default {
         "scale-in": "scale-in 0.3s ease-out",
         "bubble": "bubble 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
-        "pulse-pink": "pulse-pink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "pulse-pink": "pulse-pink 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       // Bordures arrondies personnalisées
       borderRadius: {
