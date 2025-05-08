@@ -65,23 +65,23 @@ export const Navbar = () => {
 
             {/* Menu desktop */}
             <div className="hidden md:flex md:gap-8">
-              <a href="#" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
+              <a href="/#/nouveautes" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
                 Nouveautés
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
+              <a href="/#/best-sellers" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
                 Best-Sellers
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
+              <a href="/#/boutique" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
                 Boutique
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
+              <a href="/#/journal" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
                 Journal
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
+              <a href="/#/a-propos" className="text-text-primary hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 relative group">
                 À propos
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink group-hover:w-full transition-all duration-300"></span>
               </a>
@@ -121,27 +121,27 @@ export const Navbar = () => {
       {isMenuOpen && (
         <div className="absolute w-full bg-white/95 backdrop-blur-md shadow-md md:hidden animate-fade-down">
           <div className="flex flex-col space-y-5 p-6">
-            <a href="#" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
+            <a href="/#/nouveautes" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-pink"></span>
               Nouveautés
             </a>
-            <a href="#" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
+            <a href="/#/best-sellers" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-pink"></span>
               Best-Sellers
             </a>
-            <a href="#" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
+            <a href="/#/boutique" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-pink"></span>
               Boutique
             </a>
-            <a href="#" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
+            <a href="/#/journal" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-pink"></span>
               Journal
             </a>
-            <a href="#" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
+            <a href="/#/a-propos" className="text-pink-dark hover:text-pink text-sm uppercase tracking-wider transition-colors duration-300 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-pink"></span>
               À propos
             </a>
-            <Button variant="gradient" size="sm" className="mt-2 w-full">
+            <Button variant="gradient" size="sm" className="mt-2 w-full rounded-full shadow-pink-glow">
               CONNEXION / INSCRIPTION
             </Button>
           </div>

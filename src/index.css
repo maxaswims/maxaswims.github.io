@@ -123,6 +123,10 @@
   .animate-pulse-pink {
     animation: pulse-pink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+  
+  .animate-pulse-pink-slow {
+    animation: pulse-pink 6s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+  }
 
   .title-uppercase {
     @apply uppercase tracking-widest;
@@ -283,7 +287,7 @@
 }
 
 .section-title {
-  @apply mb-2 text-sm font-medium uppercase tracking-widest text-turquoise;
+  @apply mb-2 text-sm font-medium uppercase tracking-widest text-pink;
 }
 
 .section-heading {
@@ -307,7 +311,7 @@
 /* Classe pour le favicon arrondi */
 .rounded-favicon {
   border-radius: 50%;
-  border: 2px solid var(--turquoise-color, #1a858d);
+  border: 2px solid var(--pink-color, #FF80B0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }

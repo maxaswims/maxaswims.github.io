@@ -53,7 +53,7 @@ export const Footer = () => {
             <h3 className="text-sm font-medium uppercase tracking-wider mb-4">Contact</h3>
             <ul className="space-y-2 text-white/70">
               <li>contact@maxaswims.fr</li>
-              <li>+33 6 12 34 56 78</li>
+              {/* <li>+33 6 12 34 56 78</li> */}
               <li>Biarritz, France</li>
             </ul>
           </div>

@@ -160,7 +160,7 @@ export const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up delay-100">
-            <Button variant="bubble" size="lg" className="animate-pulse-pink">
+            <Button variant="bubble" size="lg" className="animate-pulse-pink-slow">
               DÉCOUVRIR LA COLLECTION
             </Button>
             
@@ -169,10 +169,24 @@ export const HeroSection = () => {
             </Button>
           </div>
           
-          {/* Indicateur de défilement */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          {/* Indicateur de défilement - Desktop */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
             <div className="w-8 h-14 rounded-full border-2 border-white flex items-start justify-center p-1">
               <div className="w-1 h-3 bg-white rounded-full animate-float"></div>
+            </div>
+          </div>
+          
+          {/* Indicateur de swipe - Mobile */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce md:hidden">
+            <div className="flex flex-col items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse-pink">
+                <path d="M21 8V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"></path>
+                <path d="M16 8h5v4h-5"></path>
+                <path d="m17 11-2-2 2-2"></path>
+                <path d="M6 12h5"></path>
+                <path d="m9 9 3 3-3 3"></path>
+              </svg>
+              <span className="text-white text-xs font-medium">Swipez vers le bas</span>
             </div>
           </div>
         </div>
