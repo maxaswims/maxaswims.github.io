@@ -4,7 +4,7 @@ import { ProductCard } from "./ProductCard";
 const bestSellers = [
   {
     id: 1,
-    name: "Bikini Coral Reef",
+    name: "White & Coral reef Set",
     price: 89,
     image: "/assets/PICS/Sandy/iG/202405.jpg",
     isNew: false,
@@ -12,14 +12,14 @@ const bestSellers = [
   },
   {
     id: 2,
-    name: "Ensemble Sunset Dream",
+    name: "Pink & Sand Sunset Dream",
     price: 129,
     image: "/assets/PICS/Sandy/iG/202413.jpg",
     description: "Ensemble bikini et paréo en crochet, parfait pour les soirées d'été",
   },
   {
     id: 3,
-    name: "Bikini Ocean Blue",
+    name: "Coral Reef Set",
     price: 99,
     image: "/assets/PICS/Sandy/iG/202417.jpg",
     isNew: true,
@@ -27,7 +27,7 @@ const bestSellers = [
   },
   {
     id: 4,
-    name: "Ensemble Beach Day",
+    name: "Blue & Sand Beach Day Set",
     price: 149,
     image: "/assets/PICS/Sandy/iG/202418.jpg",
     description: "Ensemble complet pour une journée parfaite à la plage, confort et élégance",
