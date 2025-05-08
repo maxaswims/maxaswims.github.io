@@ -122,10 +122,12 @@ export const Boutique = () => {
           {filteredProducts.map((product) => (
             <ProductCard 
               key={product.id} 
+              id={product.id}
               image={product.image} 
               name={product.name} 
               price={product.price} 
               isNew={product.isNew} 
+              description={product.category}
             />
           ))}
         </div>

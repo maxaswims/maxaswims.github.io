@@ -2,15 +2,21 @@ import { ShoppingBag, Menu, Search, User, Heart, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
 import { AuthModal } from "./AuthModal";
+import { ProfileModal } from "./ProfileModal";
+import { FavoritesModal } from "./FavoritesModal";
 import { useAuth } from "../contexts/useAuth";
+import { useFavorites } from "../contexts/useFavorites";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isFavoritesModalOpen, setIsFavoritesModalOpen] = useState(false);
   
   const { currentUser, logout, userProfile } = useAuth();
+  const { favorites } = useFavorites();
 
   // Effet pour détecter le défilement et changer l'apparence de la navbar
   useEffect(() => {
@@ -98,14 +104,24 @@ export const Navbar = () => {
             <Button variant="ghost" size="icon" className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300">
               <Search className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300 relative"
+              onClick={() => setIsFavoritesModalOpen(true)}
+            >
               <Heart className="h-4 w-4 md:h-5 md:w-5" />
+              {favorites.length > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-pink-dark text-[10px] md:text-xs text-white border border-white">
+                  {favorites.length}
+                </span>
+              )}
             </Button>
             <Button 
               variant="ghost" 
               size="icon" 
               className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300"
-              onClick={() => currentUser ? null : setIsAuthModalOpen(true)}
+              onClick={() => currentUser ? setIsProfileModalOpen(true) : setIsAuthModalOpen(true)}
             >
               <User className="h-4 w-4 md:h-5 md:w-5" />
               {currentUser && (
@@ -181,6 +197,18 @@ export const Navbar = () => {
       <AuthModal 
         isOpen={isAuthModalOpen} 
         onClose={() => setIsAuthModalOpen(false)} 
+      />
+      
+      {/* Modale de profil */}
+      <ProfileModal 
+        isOpen={isProfileModalOpen} 
+        onClose={() => setIsProfileModalOpen(false)} 
+      />
+      
+      {/* Modale des favoris */}
+      <FavoritesModal 
+        isOpen={isFavoritesModalOpen} 
+        onClose={() => setIsFavoritesModalOpen(false)} 
       />
     </header>
   );

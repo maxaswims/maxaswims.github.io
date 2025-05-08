@@ -6,6 +6,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { AuthProvider } from "./contexts/AuthContext";
+import { FavoritesProvider } from "./contexts/FavoritesContext";
 import Index from "./pages/Index";
 import Nouveautes from "./pages/Nouveautes";
 import BestSellers from "./pages/BestSellers";
@@ -19,10 +20,11 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <HashRouter>
+      <FavoritesProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <HashRouter>
           <Navbar />
           <main>
             <Routes>
@@ -38,7 +40,8 @@ const App = () => (
           </main>
           <Footer />
         </HashRouter>
-      </TooltipProvider>
+        </TooltipProvider>
+      </FavoritesProvider>
     </AuthProvider>
   </QueryClientProvider>
 );

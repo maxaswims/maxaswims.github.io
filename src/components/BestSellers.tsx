@@ -3,7 +3,7 @@ import { ProductCard } from "./ProductCard";
 // Données des produits best-sellers
 const bestSellers = [
   {
-    id: 1,
+    id: "1",
     name: "White & Coral reef Set",
     price: 89,
     image: "/assets/PICS/Sandy/iG/202405.jpg",
@@ -11,14 +11,14 @@ const bestSellers = [
     description: "Bikini triangle en coton bio tricoté à la main, modèle signature",
   },
   {
-    id: 2,
+    id: "2",
     name: "Pink & Sand Sunset Dream",
     price: 129,
     image: "/assets/PICS/Sandy/iG/202413.jpg",
     description: "Ensemble bikini et paréo en crochet, parfait pour les soirées d'été",
   },
   {
-    id: 3,
+    id: "3",
     name: "Coral Reef Set",
     price: 99,
     image: "/assets/PICS/Sandy/iG/202417.jpg",
@@ -26,7 +26,7 @@ const bestSellers = [
     description: "Bikini triangle en coton bio, inspiration océanique pour un style unique",
   },
   {
-    id: 4,
+    id: "4",
     name: "Blue & Sand Beach Day Set",
     price: 149,
     image: "/assets/PICS/Sandy/iG/202418.jpg",
