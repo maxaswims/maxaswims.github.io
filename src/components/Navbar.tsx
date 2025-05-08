@@ -1,11 +1,16 @@
-import { ShoppingBag, Menu, Search, User, Heart } from "lucide-react";
+import { ShoppingBag, Menu, Search, User, Heart, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
+import { AuthModal } from "./AuthModal";
+import { useAuth } from "../contexts/useAuth";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showPromo, setShowPromo] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  
+  const { currentUser, logout, userProfile } = useAuth();
 
   // Effet pour détecter le défilement et changer l'apparence de la navbar
   useEffect(() => {
@@ -96,9 +101,28 @@ export const Navbar = () => {
             <Button variant="ghost" size="icon" className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300">
               <Heart className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300"
+              onClick={() => currentUser ? null : setIsAuthModalOpen(true)}
+            >
               <User className="h-4 w-4 md:h-5 md:w-5" />
+              {currentUser && (
+                <span className="absolute -right-1 -top-1 flex h-2 w-2 items-center justify-center rounded-full bg-green-500 border border-white"></span>
+              )}
             </Button>
+            {currentUser && (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="text-pink-dark hover:bg-pink/10 hover:text-pink transition-colors duration-300"
+                onClick={() => logout()}
+                title="Se déconnecter"
+              >
+                <LogOut className="h-4 w-4 md:h-5 md:w-5" />
+              </Button>
+            )}
             <Button variant="bubble" size="icon" className="relative text-white hover:text-white">
               <ShoppingBag className="h-4 w-4 md:h-5 md:w-5" />
               <span className="absolute -right-1 -top-1 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-pink-dark text-[10px] md:text-xs text-white border border-white">
@@ -141,12 +165,23 @@ export const Navbar = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-pink"></span>
               À propos
             </a>
-            <Button variant="gradient" size="sm" className="mt-2 w-full rounded-full shadow-pink-glow">
-              CONNEXION / INSCRIPTION
+            <Button 
+              variant="gradient" 
+              size="sm" 
+              className="mt-2 w-full rounded-full shadow-pink-glow"
+              onClick={() => setIsAuthModalOpen(true)}
+            >
+              {currentUser ? `Bonjour, ${userProfile?.displayName || 'Utilisateur'}` : 'CONNEXION / INSCRIPTION'}
             </Button>
           </div>
         </div>
       )}
+      
+      {/* Modale d'authentification */}
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
     </header>
   );
 };
