@@ -87,7 +87,7 @@ const APropos = () => {
         <div className="text-center mb-16">
           <h2 className="text-2xl font-medium text-pink mb-8">L'Équipe MAXASWIMS</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
+            {/* <div>
               <img 
                 src="/assets/PICS/DS/4models.png" 
                 alt="Fondatrice" 
@@ -98,20 +98,20 @@ const APropos = () => {
               <p className="text-text-secondary">
                 Passionnée de crochet depuis son enfance, Marie a créé MAXASWIMS pour partager son art avec le monde.
               </p>
-            </div>
+            </div> */}
             <div>
               <img 
                 src="/assets/PICS/DS/2girls.png" 
                 alt="Directrice Créative" 
                 className="w-48 h-48 object-cover rounded-full mx-auto mb-4 border-4 border-pink shadow-pink-glow"
               />
-              <h3 className="text-xl font-medium mb-1">Sophie Martin</h3>
-              <p className="text-pink mb-2">Directrice Créative</p>
+              <h3 className="text-xl font-medium mb-1">Mama MAXA</h3>
+              <p className="text-pink mb-2">Directrice et Créatrice</p>
               <p className="text-text-secondary">
-                Sophie apporte sa vision artistique unique pour créer des designs innovants et intemporels.
+                Mama MAXA apporte sa vision artistique unique pour créer des designs innovants et intemporels.
               </p>
             </div>
-            <div>
+            {/* <div>
               <img 
                 src="/assets/PICS/DS/maxaDSpink.png" 
                 alt="Responsable Production" 
@@ -122,7 +122,7 @@ const APropos = () => {
               <p className="text-text-secondary">
                 Lucie supervise la production artisanale et veille à la qualité irréprochable de chaque pièce.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
 
