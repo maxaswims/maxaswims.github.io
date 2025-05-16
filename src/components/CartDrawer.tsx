@@ -1,45 +1,21 @@
-import { ShoppingBag, X, Trash2, Plus, Minus } from "lucide-react";
+import { ShoppingBag, X, Trash2, Plus, Minus, Instagram, AlertTriangle } from "lucide-react";
 import { Button } from "./ui/button";
 import { useCart } from "../contexts/useCart";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { toast } from "./ui/use-toast";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogFooter
+} from './ui/dialog';
+import { ScrollArea } from './ui/scroll-area';
 
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showOrderNotice, setShowOrderNotice] = useState(false);
   const { items, removeFromCart, updateQuantity, getItemCount, getTotalPrice } = useCart();
-  
-  // Fermer le panier quand on clique en dehors
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const drawer = document.getElementById('cart-drawer');
-      const cartButton = document.getElementById('cart-button');
-      
-      if (drawer && !drawer.contains(event.target as Node) && 
-          cartButton && !cartButton.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen]);
-
-  // Désactiver le défilement du body quand le panier est ouvert
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
 
   const itemCount = getItemCount();
   const totalPrice = getTotalPrice().toFixed(2);
@@ -62,36 +38,27 @@ export const CartDrawer = () => {
         )}
       </Button>
 
-      {/* Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40 animate-fade-in" />
-      )}
-
-      {/* Drawer */}
-      <div
-        id="cart-drawer"
-        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-white z-50 shadow-xl transform transition-transform duration-300 rounded-l-3xl ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div className="flex flex-col h-full">
-          {/* En-tête */}
-          <div className="flex items-center justify-between p-4 border-b">
-            <h2 className="text-lg font-medium">Votre Panier</h2>
-            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
+      {/* Modale du panier */}
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="sm:max-w-md md:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-pink-dark">
+              <ShoppingBag className="h-5 w-5 text-pink" />
+              Mon Panier ({itemCount})
+            </DialogTitle>
+          </DialogHeader>
 
           {/* Contenu du panier */}
-          <div className="flex-1 overflow-y-auto p-4">
             {items.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-center">
-                <ShoppingBag className="h-16 w-16 text-gray-300 mb-4" />
+              <div className="py-8 text-center">
+                <ShoppingBag className="mx-auto h-12 w-12 text-gray-300 mb-4" />
                 <p className="text-gray-500">Votre panier est vide</p>
+                <p className="text-sm text-gray-400 mt-2">
+                  Ajoutez des articles à votre panier pour les retrouver ici
+                </p>
                 <Button 
-                  variant="bubble" 
-                  className="mt-4"
+                  variant="gradient" 
+                  className="mt-6"
                   onClick={() => {
                     setIsOpen(false);
                     // Rediriger vers la boutique
@@ -102,68 +69,128 @@ export const CartDrawer = () => {
                 </Button>
               </div>
             ) : (
-              <ul className="space-y-4">
-                {items.map((item) => (
-                  <li key={item.id} className="flex gap-4 pb-4 border-b">
-                    <div className="w-20 h-20 rounded-xl overflow-hidden">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-xl" />
+              <ScrollArea className="max-h-[60vh]">
+                <div className="space-y-4 pr-4">
+                  {items.map((item) => (
+                    <div 
+                      key={item.id} 
+                      className="flex items-center gap-4 p-3 rounded-lg border border-gray-100 hover:border-pink-100 transition-all"
+                    >
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        className="h-16 w-16 object-cover rounded-md"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-sm font-medium text-text-primary truncate">{item.name}</h4>
+                        <div className="flex items-center mt-1">
+                          <p className="text-sm font-medium text-pink">{item.price} €</p>
+                          <div className="flex items-center ml-4 bg-white rounded-full shadow-sm p-1 w-fit">
+                            <Button 
+                              variant="ghost" 
+                              size="icon" 
+                              className="h-6 w-6 rounded-full hover:bg-pink/10"
+                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            >
+                              <Minus className="h-3 w-3" />
+                            </Button>
+                            <span className="mx-2 text-xs font-medium min-w-[16px] text-center">{item.quantity}</span>
+                            <Button 
+                              variant="ghost" 
+                              size="icon" 
+                              className="h-6 w-6 rounded-full hover:bg-pink/10"
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            >
+                              <Plus className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                      <Button 
+                        variant="ghost" 
+                        size="icon" 
+                        className="h-8 w-8 text-pink hover:bg-pink/10"
+                        onClick={() => removeFromCart(item.id)}
+                        title="Retirer du panier"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium">{item.name}</h3>
-                      <p className="text-sm text-pink">{item.price} €</p>
-                      
-                      <div className="flex items-center mt-2">
-                        <Button 
-                          variant="outline" 
-                          size="icon" 
-                          className="h-7 w-7 rounded-full"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  ))}  
+                </div>
+              </ScrollArea>
+            )}
+
+            {/* Pied de page avec total et bouton de paiement */}
+            {items.length > 0 && (
+              <>
+                <div className="flex justify-between p-3 bg-gray-50 rounded-lg mt-4">
+                  <span className="font-medium text-text-primary">Total</span>
+                  <span className="font-medium text-pink">{totalPrice} €</span>
+                </div>
+                
+                {showOrderNotice && (
+                  <div className="mt-4 p-3 rounded-lg bg-gradient-to-r from-red-50 to-pink-50 border border-pink/20">
+                    <div className="flex items-start gap-2">
+                      <AlertTriangle className="h-5 w-5 text-pink-dark flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-sm font-medium text-pink-dark">Commandes disponibles sur Instagram</p>
+                        <p className="text-xs text-pink-dark/80 mt-1">
+                          Les commandes sont actuellement disponibles uniquement via message privé sur Instagram. 
+                          Les commandes en ligne seront disponibles très bientôt sur notre site.
+                        </p>
+                        <a 
+                          href="https://www.instagram.com/p/C8xVJbPoXIh/?img_index=1" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-pink-dark hover:text-pink transition-colors"
                         >
-                          <Minus className="h-3 w-3" />
-                        </Button>
-                        <span className="mx-2 text-sm">{item.quantity}</span>
-                        <Button 
-                          variant="outline" 
-                          size="icon" 
-                          className="h-7 w-7 rounded-full"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        >
-                          <Plus className="h-3 w-3" />
-                        </Button>
-                        
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="ml-auto text-gray-400 hover:text-pink"
-                          onClick={() => removeFromCart(item.id)}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
+                          <Instagram className="h-3 w-3" />
+                          Contacter sur Instagram
+                        </a>
                       </div>
                     </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+                  </div>
+                )}
 
-          {/* Pied de page avec total et bouton de paiement */}
-          {items.length > 0 && (
-            <div className="p-4 border-t">
-              <div className="flex justify-between mb-4">
-                <span className="font-medium">Total</span>
-                <span className="font-medium">{totalPrice} €</span>
-              </div>
-              <Button variant="bubble" className="w-full">
-                PASSER LA COMMANDE
-              </Button>
-              <p className="text-xs text-center mt-2 text-gray-500">
-                Paiement sécurisé par Stripe
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
+                <DialogFooter className="flex justify-between gap-4 mt-4">
+                  <Button 
+                    variant="outline" 
+                    className="border-pink text-pink hover:bg-pink/10"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Continuer mes achats
+                  </Button>
+                  <Button 
+                    variant="gradient" 
+                    className="text-white"
+                    onClick={() => {
+                      setShowOrderNotice(true);
+                      toast({
+                        variant: "destructive",
+                        title: "Commandes disponibles sur Instagram",
+                        description: "Les commandes sont actuellement disponibles uniquement via message privé sur Instagram. Les commandes en ligne seront disponibles très bientôt sur notre site.",
+                        action: (
+                          <a 
+                            href="https://www.instagram.com/p/C8xVJbPoXIh/?img_index=1" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="rounded-md bg-white px-3 py-2 text-sm font-medium text-pink hover:bg-pink/10 focus:outline-none focus:ring-2 focus:ring-pink-500 flex items-center gap-2"
+                          >
+                            <Instagram className="h-4 w-4" />
+                            Contacter sur Instagram
+                          </a>
+                        ),
+                      });
+                    }}
+                  >
+                    Commander
+                  </Button>
+                </DialogFooter>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
     </>
   );
 };
