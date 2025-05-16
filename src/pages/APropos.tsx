@@ -10,7 +10,7 @@ const APropos = () => {
             <span className="text-gradient-pink font-medium">Notre Histoire</span>
           </h1>
           <p className="text-text-secondary max-w-2xl mx-auto mb-8">
-            MAXASWIMS est née d'une passion pour l'artisanat et d'un amour pour la mer.
+            MAXA SWIMS est une marque de maillots de bain née au cœur du Pays basque, à Biarritz, inspirée par l'élégance, la créativité et l'esprit libre de la côte Atlantique.
           </p>
         </div>
 
@@ -24,15 +24,18 @@ const APropos = () => {
             />
           </div>
           <div className="md:w-1/2">
-            <h2 className="text-2xl font-medium text-pink mb-4">Notre Passion</h2>
+            <h2 className="text-2xl font-medium text-pink mb-4">Notre Histoire</h2>
             <p className="text-text-secondary mb-4">
-              Fondée en 2022, MAXASWIMS est le fruit d'un rêve : créer des maillots de bain uniques, faits à la main, qui allient savoir-faire artisanal et design contemporain.
+              L'aventure MAXA SWIMS a commencé avec un souvenir : un maillot de bain confectionné à la main il y a quelques années, qui a marqué les esprits par son style tropical et ses détails dorés. Ce souvenir, associé à l'inspiration puisée auprès de créatrices locales et internationales, a donné naissance à notre projet : créer des maillots de bain uniques pour les filles de Biarritz, les amatrices de mode et les voyageuses en quête d'authenticité.
             </p>
             <p className="text-text-secondary mb-4">
-              Chaque pièce est confectionnée avec amour et attention aux détails, en utilisant des techniques de crochet traditionnelles transmises de génération en génération.
+              Notre collection met à l'honneur le crochet, une tendance intemporelle remise au goût du jour par les plus grandes influenceuses et stars du moment. Chaque pièce est pensée pour sublimer toutes les silhouettes, avec une attention particulière portée à la qualité des matières et aux finitions artisanales.
+            </p>
+            <p className="text-text-secondary mb-4">
+              MAXA SWIMS, c'est aussi une aventure humaine, ponctuée de shootings photos sur la plage, de rencontres et de moments de partage. Nous avons à cœur de faire vivre la marque au rythme des saisons et des tendances, en proposant régulièrement de nouvelles créations.
             </p>
             <p className="text-text-secondary mb-6">
-              Notre mission est de proposer des créations durables et intemporelles, qui vous accompagneront saison après saison.
+              Et pour la petite anecdote, MAXA SWIMS ne sait pas encore nager… mais il n'est jamais trop tard pour apprendre ! 🩷🩵
             </p>
             <Button variant="gradient" size="lg">
               NOTRE PHILOSOPHIE

@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
   const [videoError, setVideoError] = useState(false);
@@ -160,12 +161,16 @@ export const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up delay-100">
-            <Button variant="bubble" size="lg" className="animate-pulse-pink-slow">
-              DÉCOUVRIR LA COLLECTION
+            <Button variant="bubble" size="lg" className="animate-pulse-pink-slow" asChild>
+              <Link to="/boutique">
+                DÉCOUVRIR LA COLLECTION
+              </Link>
             </Button>
             
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/20">
-              NOTRE HISTOIRE
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/20" asChild>
+              <Link to="/a-propos">
+                NOTRE HISTOIRE
+              </Link>
             </Button>
           </div>
           
