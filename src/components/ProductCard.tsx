@@ -1,7 +1,9 @@
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart, ShoppingBag, Check } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { useFavorites } from "../contexts/useFavorites";
+import { useCart } from "../contexts/useCart";
+import { toast } from "../components/ui/use-toast";
 
 interface ProductCardProps {
   id: string;
@@ -14,9 +16,12 @@ interface ProductCardProps {
 
 export const ProductCard = ({ id, image, name, price, isNew, description }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const { addToCart, items } = useCart();
   
   const isProductFavorite = isFavorite(id);
+  const isInCart = items.some(item => item.id === id);
   
   const handleFavoriteClick = () => {
     if (isProductFavorite) {
@@ -30,6 +35,25 @@ export const ProductCard = ({ id, image, name, price, isNew, description }: Prod
         description
       });
     }
+  };
+  
+  const handleAddToCart = () => {
+    setIsAddingToCart(true);
+    addToCart({
+      id,
+      image,
+      name,
+      price
+    });
+    
+    toast({
+      title: "Produit ajouté au panier",
+      description: `${name} a été ajouté à votre panier`,
+      variant: "default",
+    });
+    
+    // Réinitialiser l'état après un court délai pour l'animation
+    setTimeout(() => setIsAddingToCart(false), 1500);
   };
 
   return (
@@ -69,10 +93,21 @@ export const ProductCard = ({ id, image, name, price, isNew, description }: Prod
               className="flex items-center gap-2 animate-float"
               onClick={(e) => {
                 e.stopPropagation();
+                handleAddToCart();
               }}
+              disabled={isAddingToCart}
             >
-              <ShoppingBag className="h-4 w-4" />
-              AJOUTER AU PANIER
+              {isAddingToCart ? (
+                <>
+                  <Check className="h-4 w-4" />
+                  AJOUTÉ
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="h-4 w-4" />
+                  {isInCart ? 'AJOUTER ENCORE' : 'AJOUTER AU PANIER'}
+                </>
+              )}
             </Button>
           </div>
         )}

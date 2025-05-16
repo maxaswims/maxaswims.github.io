@@ -1,9 +1,10 @@
-import { ShoppingBag, Menu, Search, User, Heart, LogOut } from "lucide-react";
+import { Menu, Search, User, Heart, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
 import { AuthModal } from "./AuthModal";
 import { ProfileModal } from "./ProfileModal";
 import { FavoritesModal } from "./FavoritesModal";
+import { CartDrawer } from "./CartDrawer";
 import { useAuth } from "../contexts/useAuth";
 import { useFavorites } from "../contexts/useFavorites";
 
@@ -139,12 +140,7 @@ export const Navbar = () => {
                 <LogOut className="h-4 w-4 md:h-5 md:w-5" />
               </Button>
             )}
-            <Button variant="bubble" size="icon" className="relative text-white hover:text-white">
-              <ShoppingBag className="h-4 w-4 md:h-5 md:w-5" />
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-pink-dark text-[10px] md:text-xs text-white border border-white">
-                0
-              </span>
-            </Button>
+            <CartDrawer />
             <Button
               variant="ghost"
               size="icon"

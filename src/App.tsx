@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { AuthProvider } from "./contexts/AuthProvider";
 import { FavoritesProvider } from "./contexts/FavoritesProvider";
+import { CartProvider } from "./contexts/CartProvider";
 import Index from "./pages/Index";
 import Nouveautes from "./pages/Nouveautes";
 import BestSellers from "./pages/BestSellers";
@@ -21,26 +22,28 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <FavoritesProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <HashRouter>
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/nouveautes" element={<Nouveautes />} />
-              <Route path="/best-sellers" element={<BestSellers />} />
-              <Route path="/boutique" element={<Boutique />} />
-              <Route path="/journal" element={<Journal />} />
-              <Route path="/a-propos" element={<APropos />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </HashRouter>
-        </TooltipProvider>
+        <CartProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <HashRouter>
+              <Navbar />
+              <main>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/nouveautes" element={<Nouveautes />} />
+                  <Route path="/best-sellers" element={<BestSellers />} />
+                  <Route path="/boutique" element={<Boutique />} />
+                  <Route path="/journal" element={<Journal />} />
+                  <Route path="/a-propos" element={<APropos />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+              <Footer />
+            </HashRouter>
+          </TooltipProvider>
+        </CartProvider>
       </FavoritesProvider>
     </AuthProvider>
   </QueryClientProvider>
