@@ -52,6 +52,9 @@
     
     /* Arrondis et espacements */
     --radius: 0.75rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.25rem;
+    --radius-xl: 1.5rem;
     --radius-bubble: 40% 60% 60% 40% / 60% 30% 70% 40%;
     --radius-blob: 60% 40% 30% 70% / 60% 30% 70% 40%;
     
@@ -134,11 +137,22 @@
 }
 
 .product-card {
-  @apply relative overflow-hidden rounded-sm bg-white shadow-sm transition-all duration-300 hover:shadow-md;
+  @apply relative overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:shadow-md;
 }
 
 .product-image {
-  @apply aspect-[3/4] w-full object-cover object-center;
+  @apply aspect-[3/4] w-full object-cover object-center rounded-2xl;
+}
+
+/* Maintenir les border-radius cohérents au hover */
+.product-card:hover .product-image,
+.product-card:hover .overlay {
+  @apply rounded-2xl;
+}
+
+/* Style pour les overlays sur les cartes */
+.card-overlay {
+  @apply absolute inset-0 bg-pink/10 backdrop-blur-sm transition-all duration-300 rounded-2xl;
 }
 
 .hero-section {

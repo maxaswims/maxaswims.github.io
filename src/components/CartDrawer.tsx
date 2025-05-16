@@ -70,7 +70,7 @@ export const CartDrawer = () => {
       {/* Drawer */}
       <div
         id="cart-drawer"
-        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-white z-50 shadow-xl transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-white z-50 shadow-xl transform transition-transform duration-300 rounded-l-3xl ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -105,8 +105,8 @@ export const CartDrawer = () => {
               <ul className="space-y-4">
                 {items.map((item) => (
                   <li key={item.id} className="flex gap-4 pb-4 border-b">
-                    <div className="w-20 h-20 rounded-md overflow-hidden">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    <div className="w-20 h-20 rounded-xl overflow-hidden">
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-xl" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-medium">{item.name}</h3>

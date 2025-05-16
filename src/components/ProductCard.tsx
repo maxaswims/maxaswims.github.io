@@ -62,11 +62,11 @@ export const ProductCard = ({ id, image, name, price, isNew, description }: Prod
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative overflow-hidden rounded-xl bubble-shadow hover:pink-glow">
+      <div className="relative overflow-hidden rounded-2xl bubble-shadow hover:pink-glow">
         <img
           src={image}
           alt={name}
-          className="product-image transform transition-transform duration-500 group-hover:scale-105"
+          className="product-image transform transition-transform duration-500 group-hover:scale-105 rounded-2xl"
         />
         <Button
           variant="ghost"
@@ -87,7 +87,7 @@ export const ProductCard = ({ id, image, name, price, isNew, description }: Prod
 
         {/* Bouton Ajouter au panier qui apparaît au survol */}
         {isHovered && (
-          <div className="absolute inset-0 flex items-center justify-center bg-pink/10 backdrop-blur-sm transition-all duration-300 animate-scale-in z-10">
+          <div className="card-overlay flex items-center justify-center animate-scale-in z-10">
             <Button 
               variant="bubble" 
               className="flex items-center gap-2 animate-float"

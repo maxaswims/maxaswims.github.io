@@ -3,12 +3,12 @@ import { Button } from "./ui/button";
 
 // Images Instagram réelles
 const instagramImages = [
-  "/assets/PICS/Sandy/iG/202402.jpg",
-  "/assets/PICS/Sandy/iG/202403.jpg",
-  "/assets/PICS/Sandy/iG/202404.jpg",
-  "/assets/PICS/Sandy/iG/202408.jpg",
-  "/assets/PICS/Sandy/iG/202409.jpg",
-  "/assets/PICS/Sandy/iG/202414.jpg",
+  "/assets/PICS/Sandy2024/Sandy10.jpg",
+  "/assets/PICS/Sandy2024/Sandy11.jpg",
+  "/assets/PICS/Sandy2024/Sandy12.jpg",
+  "/assets/PICS/Sandy2024/Sandy13.jpg",
+  "/assets/PICS/Aleesha2024/Blue/P3Blue5.jpeg",
+  "/assets/PICS/Aleesha2024/Green/P2simoGreen20.jpg",
 ];
 
 // Descriptions pour chaque image
@@ -48,13 +48,13 @@ export const InstagramFeed = () => {
               rel="noopener noreferrer"
               className="block overflow-hidden group"
             >
-              <div className="relative aspect-square overflow-hidden">
+              <div className="relative aspect-square overflow-hidden rounded-2xl">
                 <img
                   src={image}
                   alt={instagramDescriptions[index]}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-pink/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-pink/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-2xl">
                   <Instagram className="h-8 w-8 text-white" />
                 </div>
               </div>
