@@ -29,7 +29,7 @@ export const InstagramFeed = () => {
           <h2 className="section-title">Instagram</h2>
           <h3 className="section-heading">NOUS SUIVRE SUR INSTAGRAM</h3>
           <a
-            href="https://www.instagram.com/maxa.swims/"
+            href="https://www.instagram.com/p/C8xVJbPoXIh/?img_index=1"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-pink hover:text-pink-dark transition-colors"
@@ -43,7 +43,7 @@ export const InstagramFeed = () => {
           {instagramImages.map((image, index) => (
             <a
               key={index}
-              href="https://www.instagram.com/maxa.swims/"
+              href="https://www.instagram.com/p/C8kVORKomaD/?img_index=1"
               target="_blank"
               rel="noopener noreferrer"
               className="block overflow-hidden group"

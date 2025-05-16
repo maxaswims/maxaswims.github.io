@@ -110,7 +110,7 @@ export const HeroSection = () => {
           {videoError && (
             <div className="absolute inset-0">
               <img
-                src="/assets/PICS/Sandy/iG/202419.jpg"
+                src="/assets/PICS/Sandy2024/Sandy16.jpg"
                 alt="Maillot de bain MAXASWIMS - Collection été"
                 className="w-full h-full object-cover object-center"
               />

@@ -36,11 +36,11 @@ export const SignatureProduct = () => {
           <div className="w-full md:w-1/2">
             <picture>
               {/* Image JPEG principale */}
-              <source srcSet="/assets/PICS/Aleesha/202406.jpeg" type="image/jpeg" />
+              <source srcSet="/assets/PICS/Aleesha2024/Blue/P3Blue22.jpeg" type="image/jpeg" />
               {/* Image par défaut si aucune source n'est compatible */}
               <img
                 ref={imgRef}
-                src="/assets/PICS/Aleesha/202406.jpeg"
+                src="/assets/PICS/Aleesha2024/Blue/P3Blue22.jpeg"
                 alt="Modèle signature Blue Sky Bikini - Collection 2025"
                 className="w-full max-w-md mx-auto object-cover rounded-sm shadow-md h-[600px]"
                 onLoad={() => console.log("Image chargée via onLoad")}

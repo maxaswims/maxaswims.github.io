@@ -7,7 +7,7 @@ export const LifestyleSection = () => {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
           <div className="w-full md:w-1/2">
             <img
-              src="/assets/PICS/Sandy/iG/202407.jpg"
+              src="/assets/PICS/Sandy2024/Sandy7.jpg"
               alt="L'univers MAXASWIMS - Style de vie balnéaire"
               className="w-full h-[500px] object-cover rounded-sm shadow-md"
             />
