@@ -1,48 +1,51 @@
 import { Button } from '../components/ui/button';
 import { ProductCard } from '../components/ProductCard';
+import { useCart } from '../contexts/useCart';
 
 const BestSellers = () => {
-  // Données factices pour les produits best-sellers
+  const { getItemCount } = useCart();
+  
+  // Produits best-sellers mis à jour avec les maillots demandés
   const bestSellerProducts = [
     {
       id: 'bs1',
-      name: 'Bikini Triangle Rose',
+      name: 'Bikini Green Jungle',
       price: 89.90,
-      image: '/assets/PICS/DS/BubbleFusionMaxa.png',
+      image: '/assets/PICS/Aleesha2024/Green/P1soloGreen24.JPG',
       category: 'Bikini',
-      isNew: false,
+      isNew: true,
       isBestSeller: true,
-      colors: ['pink', 'pink-dark', 'pink-light'],
+      colors: ['green', 'green-dark', 'green-light'],
     },
     {
       id: 'bs2',
-      name: 'Maillot Bandeau Corail',
-      price: 79.90,
-      image: '/assets/PICS/DS/maxaDSpink.png',
+      name: 'Maillot White & Coral',
+      price: 89.90,
+      image: '/assets/PICS/Sandy2024/Sandy1.jpg',
       category: 'Bikini',
-      isNew: false,
+      isNew: true,
       isBestSeller: true,
-      colors: ['coral', 'coral-light', 'coral-dark'],
+      colors: ['white', 'coral', 'pink'],
     },
     {
       id: 'bs3',
-      name: 'Une-Pièce Sable',
-      price: 109.90,
-      image: '/assets/PICS/DS/MAXApalms.png',
-      category: 'Une-Pièce',
-      isNew: false,
+      name: 'Bikini White & Coral',
+      price: 89.90,
+      image: '/assets/PICS/Sandy2024/Sandy2.jpg',
+      category: 'Bikini',
+      isNew: true,
       isBestSeller: true,
-      colors: ['sand', 'sand-gold', 'sand-lightest'],
+      colors: ['white', 'coral', 'pink'],
     },
     {
       id: 'bs4',
-      name: 'Ensemble Plage Complet',
-      price: 159.90,
-      image: '/assets/PICS/DS/MAXAcolors.png',
-      category: 'Ensemble',
-      isNew: false,
+      name: 'Bikini White & Coral',
+      price: 89.90,
+      image: '/assets/PICS/Sandy2024/Sandy8.jpg',
+      category: 'Bikini',
+      isNew: true,
       isBestSeller: true,
-      colors: ['pink', 'coral', 'sand-gold'],
+      colors: ['white', 'coral', 'pink'],
     },
   ];
 
@@ -71,8 +74,10 @@ const BestSellers = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="gradient" size="lg" className="animate-pulse-pink">
-            EXPLORER TOUS LES BEST-SELLERS
+          <Button variant="gradient" size="lg" className="animate-pulse-pink" asChild>
+            <a href="/#/boutique">
+              EXPLORER TOUS LES BEST-SELLERS
+            </a>
           </Button>
         </div>
       </div>

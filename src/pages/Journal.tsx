@@ -1,5 +1,7 @@
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
+import { BeachSlideshow } from '../components/BeachSlideshow';
+import { CrochetVideo } from '../components/CrochetVideo';
 
 const Journal = () => {
   // Données factices pour les articles de blog
@@ -52,14 +54,32 @@ const Journal = () => {
           {blogPosts.map((post) => (
             <Card key={post.id} className="overflow-hidden border-none shadow-md hover:shadow-pink-glow transition-shadow duration-300 rounded-3xl">
               <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-                <div className="absolute top-4 left-4 bg-pink text-white text-xs font-medium py-1 px-3 rounded-full">
-                  {post.category}
-                </div>
+                {post.id === "blog3" ? (
+                  <>
+                    <CrochetVideo />
+                    <div className="absolute top-4 left-4 bg-pink text-white text-xs font-medium py-1 px-3 rounded-full">
+                      {post.category}
+                    </div>
+                  </>
+                ) : post.id === "blog4" ? (
+                  <>
+                    <BeachSlideshow />
+                    <div className="absolute top-4 left-4 bg-pink text-white text-xs font-medium py-1 px-3 rounded-full">
+                      {post.category}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <img 
+                      src={post.image} 
+                      alt={post.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4 bg-pink text-white text-xs font-medium py-1 px-3 rounded-full">
+                      {post.category}
+                    </div>
+                  </>
+                )}
               </div>
               <CardContent className="p-6">
                 <div className="text-pink-dark text-sm mb-2">{post.date}</div>

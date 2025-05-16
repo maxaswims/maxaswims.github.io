@@ -80,7 +80,7 @@ export const Boutique = () => {
     },
     {
       id: "p8",
-      name: "Maillot Sandy Sunset",
+      name: "Maillot White & Coral",
       price: 89.90,
       image: "/assets/PICS/Sandy2024/Sandy1.jpg",
       category: "Bikini",
@@ -90,7 +90,7 @@ export const Boutique = () => {
     },
     {
       id: "p9",
-      name: "Bikini Sandy Beach",
+      name: "Bikini White & Coral",
       price: 89.90,
       image: "/assets/PICS/Sandy2024/Sandy2.jpg",
       category: "Bikini",
@@ -99,7 +99,7 @@ export const Boutique = () => {
     },
     {
       id: "p10",
-      name: "Maillot Une-Pièce Sandy",
+      name: "Maillot Une-Pièce White & Coral",
       price: 119.90,
       image: "/assets/PICS/Sandy2024/Sandy3.jpg",
       category: "Une-Pièce",
@@ -108,7 +108,7 @@ export const Boutique = () => {
     },
     {
       id: "p11",
-      name: "Bikini Sandy Coral",
+      name: "Bikini White & Coral",
       price: 89.90,
       image: "/assets/PICS/Sandy2024/Sandy4.jpg",
       category: "Bikini",
@@ -126,7 +126,7 @@ export const Boutique = () => {
     },
     {
       id: "p13",
-      name: "Bikini Sandy Gold",
+      name: "Bikini Sand & Pink",
       price: 89.90,
       image: "/assets/PICS/Sandy2024/Sandy6.jpg",
       category: "Bikini",
@@ -135,7 +135,7 @@ export const Boutique = () => {
     },
     {
       id: "p14",
-      name: "Maillot Sandy Waves",
+      name: "Maillot Sand & Waves",
       price: 89.90,
       image: "/assets/PICS/Sandy2024/Sandy7.jpg",
       category: "Bikini",
@@ -144,7 +144,7 @@ export const Boutique = () => {
     },
     {
       id: "p15",
-      name: "Bikini Sandy Paradise",
+      name: "Bikini White & Coral",
       price: 89.90,
       image: "/assets/PICS/Sandy2024/Sandy8.jpg",
       category: "Bikini",
