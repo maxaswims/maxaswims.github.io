@@ -1,198 +1,216 @@
-// Remarque: Cette configuration est une simulation locale pour le développement
-// Pour la production, vous devrez configurer Firebase avec vos propres clés API
+// Configuration Firebase pour le projet MAXA Swims
+import { initializeApp } from 'firebase/app';
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword as firebaseCreateUser,
+  signInWithEmailAndPassword as firebaseSignIn,
+  signOut as firebaseSignOut,
+  onAuthStateChanged as firebaseOnAuthStateChanged,
+  updateProfile as firebaseUpdateProfile,
+  sendPasswordResetEmail as firebaseSendPasswordResetEmail
+} from 'firebase/auth';
+import { 
+  getFirestore, 
+  doc as firestoreDoc, 
+  setDoc as firestoreSetDoc, 
+  getDoc as firestoreGetDoc,
+  Timestamp as FirebaseTimestamp,
+  collection as firestoreCollection,
+  getDocs as firestoreGetDocs,
+  updateDoc as firestoreUpdateDoc,
+  deleteDoc as firestoreDeleteDoc,
+  query as firestoreQuery,
+  where as firestoreWhere,
+  orderBy as firestoreOrderBy,
+  limit as firestoreLimit
+} from 'firebase/firestore';
 
-// Créer un mock pour l'authentification Firebase
-class MockAuth {
-  currentUser: any = null;
-  listeners: Array<(user: any) => void> = [];
+// Configuration Firebase avec les identifiants du projet
+const firebaseConfig = {
+  apiKey: "AIzaSyDjcJHUoarSq-nyWqEaptj9i3GDNun0zjM",
+  authDomain: "maxaswims-79a9d.firebaseapp.com",
+  projectId: "maxaswims-79a9d",
+  storageBucket: "maxaswims-79a9d.appspot.com",
+  messagingSenderId: "194557098309",
+  appId: "1:194557098309:web:0123456789abcdef" // Remplacer par l'appId réel
+};
 
-  // Simuler la création d'un utilisateur
-  async createUserWithEmailAndPassword(email: string, password: string) {
-    // Vérifier si l'utilisateur existe déjà
-    const users = this.getUsers();
-    if (users.find(user => user.email === email)) {
-      throw { code: 'auth/email-already-in-use', message: 'Cet email est déjà utilisé' };
-    }
+// Initialiser Firebase
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
-    // Créer un nouvel utilisateur
-    const newUser = {
-      uid: `user-${Date.now()}`,
-      email,
-      emailVerified: false,
-      displayName: '',
-      photoURL: null,
-      createdAt: new Date().toISOString(),
-    };
+// Utiliser getFirestore standard et configurer les paramètres de persistance séparément
+export const db = getFirestore(app);
 
-    // Stocker l'utilisateur
-    users.push({ ...newUser, password });
-    localStorage.setItem('mockUsers', JSON.stringify(users));
+// Configurer les paramètres de Firestore pour résoudre les erreurs 400
+import { enableIndexedDbPersistence, CACHE_SIZE_UNLIMITED, disableNetwork, enableNetwork } from 'firebase/firestore';
 
-    // Mettre à jour l'utilisateur courant
-    this.currentUser = { ...newUser };
-    this.notifyListeners(this.currentUser);
-
-    return { user: this.currentUser };
-  }
-
-  // Simuler la mise à jour du profil utilisateur
-  async updateProfile(user: any, data: any) {
-    if (!user) return;
-
-    // Mettre à jour les propriétés de l'utilisateur
-    Object.assign(user, data);
-
-    // Mettre à jour l'utilisateur dans le stockage
-    const users = this.getUsers();
-    const index = users.findIndex(u => u.uid === user.uid);
-    if (index !== -1) {
-      users[index] = { ...users[index], ...data };
-      localStorage.setItem('mockUsers', JSON.stringify(users));
-    }
-
-    // Mettre à jour l'utilisateur courant
-    if (this.currentUser && this.currentUser.uid === user.uid) {
-      this.currentUser = { ...this.currentUser, ...data };
-      this.notifyListeners(this.currentUser);
-    }
-
-    return user;
-  }
-
-  // Simuler la connexion
-  async signInWithEmailAndPassword(email: string, password: string) {
-    const users = this.getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
-
-    if (!user) {
-      throw { code: 'auth/user-not-found', message: 'Email ou mot de passe incorrect' };
-    }
-
-    // Mettre à jour l'utilisateur courant (sans le mot de passe)
-    const { password: _, ...userWithoutPassword } = user;
-    this.currentUser = { ...userWithoutPassword };
-    this.notifyListeners(this.currentUser);
-
-    return { user: this.currentUser };
-  }
-
-  // Simuler la déconnexion
-  async signOut() {
-    this.currentUser = null;
-    this.notifyListeners(null);
-    return true;
-  }
-
-  // Simuler l'envoi d'un email de réinitialisation de mot de passe
-  async sendPasswordResetEmail(email: string) {
-    const users = this.getUsers();
-    const user = users.find(u => u.email === email);
-
-    if (!user) {
-      throw { code: 'auth/user-not-found', message: 'Aucun utilisateur trouvé avec cet email' };
-    }
-
-    // Dans une implémentation réelle, un email serait envoyé ici
-    console.log(`Email de réinitialisation envoyé à ${email}`);
-    return true;
-  }
-
-  // Observer les changements d'état d'authentification
-  onAuthStateChanged(callback: (user: any) => void) {
-    this.listeners.push(callback);
-    // Appeler immédiatement avec l'état actuel
-    callback(this.currentUser);
-
-    // Retourner une fonction pour se désabonner
-    return () => {
-      this.listeners = this.listeners.filter(listener => listener !== callback);
-    };
-  }
-
-  // Notifier tous les listeners des changements
-  private notifyListeners(user: any) {
-    this.listeners.forEach(listener => listener(user));
-  }
-
-  // Récupérer les utilisateurs du stockage local
-  private getUsers() {
-    const usersJson = localStorage.getItem('mockUsers');
-    return usersJson ? JSON.parse(usersJson) : [];
-  }
-}
-
-// Créer un mock pour Firestore
-class MockFirestore {
-  // Simuler la création d'un document
-  doc(collection: string, id: string) {
-    return {
-      // Simuler la récupération d'un document
-      async get() {
-        const data = this.getCollection(collection);
-        const document = data[id];
-        return {
-          exists: !!document,
-          data: () => document || null,
-          id
-        };
-      },
-      // Simuler la mise à jour d'un document
-      async set(data: any, options: any = {}) {
-        const collectionData = this.getCollection(collection);
-        if (options.merge && collectionData[id]) {
-          collectionData[id] = { ...collectionData[id], ...data };
-        } else {
-          collectionData[id] = data;
-        }
-        this.saveCollection(collection, collectionData);
-        return true;
+// Fonction pour initialiser Firestore avec gestion des erreurs
+const initializeFirestoreSettings = async () => {
+  try {
+    // Désactiver temporairement le réseau pour éviter les connexions prématurées
+    await disableNetwork(db);
+    
+    // Attendre un court instant
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Activer la persistance locale pour fonctionner hors ligne
+    await enableIndexedDbPersistence(db).catch((err) => {
+      if (err.code === 'failed-precondition') {
+        // Plusieurs onglets ouverts, la persistance ne peut fonctionner que dans un seul
+        console.warn('La persistance ne peut pas être activée car plusieurs onglets sont ouverts');
+      } else if (err.code === 'unimplemented') {
+        // Le navigateur actuel ne prend pas en charge la persistance
+        console.warn('Le navigateur actuel ne prend pas en charge la persistance IndexedDB');
       }
-    };
+    });
+    
+    // Réactiver le réseau après avoir configuré la persistance
+    await enableNetwork(db);
+  } catch (error) {
+    console.error('Erreur lors de l\'initialisation de Firestore:', error);
   }
+};
 
-  // Récupérer une collection du stockage local
-  private getCollection(collectionName: string) {
-    const collectionJson = localStorage.getItem(`mock_${collectionName}`);
-    return collectionJson ? JSON.parse(collectionJson) : {};
-  }
+// Initialiser les paramètres Firestore
+initializeFirestoreSettings();
 
-  // Sauvegarder une collection dans le stockage local
-  private saveCollection(collectionName: string, data: any) {
-    localStorage.setItem(`mock_${collectionName}`, JSON.stringify(data));
-  }
+// Ajouter la gestion des erreurs pour les opérations Firestore
+interface FirebaseError extends Error {
+  code?: string;
+  message: string;
 }
 
-// Créer des instances des mocks
-export const auth = new MockAuth();
-export const db = new MockFirestore();
-
-// Exporter les fonctions Firebase simulées
-export const createUserWithEmailAndPassword = (auth: any, email: string, password: string) => {
-  return auth.createUserWithEmailAndPassword(email, password);
+const handleFirestoreError = (error: FirebaseError) => {
+  console.error('Erreur Firestore:', error);
+  if (error.code === 'permission-denied') {
+    console.warn('Vérifiez les règles de sécurité Firestore');
+  } else if (error.message && error.message.includes('400')) {
+    console.warn('Erreur 400 détectée. Tentative de rétablissement de la connexion...');
+    // Tentative de rétablissement de la connexion
+    disableNetwork(db).then(() => {
+      setTimeout(() => {
+        enableNetwork(db).catch(e => console.error('Impossible de rétablir la connexion:', e));
+      }, 2000);
+    }).catch(e => console.error('Impossible de désactiver le réseau:', e));
+  }
+  throw error;
 };
 
-export const signInWithEmailAndPassword = (auth: any, email: string, password: string) => {
-  return auth.signInWithEmailAndPassword(email, password);
+// Types pour Firebase
+import { Auth, User as FirebaseUser, UserCredential } from 'firebase/auth';
+import { Firestore } from 'firebase/firestore';
+
+// Exporter les fonctions Firebase
+export const createUserWithEmailAndPassword = async (auth: Auth, email: string, password: string): Promise<UserCredential> => {
+  try {
+    const userCredential = await firebaseCreateUser(auth, email, password);
+    
+    try {
+      await firestoreSetDoc(firestoreDoc(db, 'users', userCredential.user.uid), {
+        email: userCredential.user.email,
+        displayName: userCredential.user.displayName || '',
+        createdAt: FirebaseTimestamp.now(),
+        lastLogin: FirebaseTimestamp.now()
+      });
+    } catch (firestoreError) {
+      handleFirestoreError(firestoreError as FirebaseError);
+      console.warn('Utilisateur créé mais erreur lors de la sauvegarde dans Firestore:', firestoreError);
+      // Continuer car l'authentification a réussi même si Firestore a échoué
+    }
+    
+    return userCredential;
+  } catch (error) {
+    console.error('Erreur lors de la création de l\'utilisateur:', error);
+    throw error;
+  }
 };
 
-export const signOut = (auth: any) => {
-  return auth.signOut();
+export const signInWithEmailAndPassword = async (auth: Auth, email: string, password: string): Promise<UserCredential> => {
+  try {
+    // Ajouter un délai avant la connexion pour éviter les erreurs 400
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    const userCredential = await firebaseSignIn(auth, email, password);
+    
+    // Attendre un peu avant d'accéder à Firestore
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Vérifier si le réseau est disponible avant d'accéder à Firestore
+    try {
+      // Utiliser un timeout pour éviter que l'opération ne bloque trop longtemps
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Timeout lors de l\'accès à Firestore')), 5000);
+      });
+      
+      // Essayer de mettre à jour lastLogin avec un timeout
+      await Promise.race([
+        firestoreSetDoc(firestoreDoc(db, 'users', userCredential.user.uid), {
+          lastLogin: FirebaseTimestamp.now()
+        }, { merge: true }),
+        timeoutPromise
+      ]);
+    } catch (firestoreError) {
+      console.warn('Connexion réussie mais erreur lors de la mise à jour de lastLogin:', firestoreError);
+      // Essayer de rétablir la connexion Firestore
+      try {
+        await disableNetwork(db);
+        setTimeout(() => {
+          enableNetwork(db).catch(e => console.error('Impossible de rétablir la connexion:', e));
+        }, 2000);
+      } catch (networkError) {
+        console.error('Erreur lors de la tentative de rétablissement de la connexion:', networkError);
+      }
+    }
+    
+    return userCredential;
+  } catch (error) {
+    console.error('Erreur lors de la connexion:', error);
+    throw error;
+  }
 };
 
-export const updateProfile = (user: any, data: any) => {
-  return auth.updateProfile(user, data);
+export const signOut = (auth: Auth): Promise<void> => {
+  return firebaseSignOut(auth);
 };
 
-export const sendPasswordResetEmail = (auth: any, email: string) => {
-  return auth.sendPasswordResetEmail(email);
+export const updateProfile = async (user: FirebaseUser, data: { displayName?: string; photoURL?: string }): Promise<FirebaseUser> => {
+  try {
+    await firebaseUpdateProfile(user, data);
+    
+    // Mettre à jour les données utilisateur dans Firestore
+    await firestoreSetDoc(firestoreDoc(db, 'users', user.uid), {
+      displayName: data.displayName || user.displayName,
+      photoURL: data.photoURL || user.photoURL
+    }, { merge: true });
+    
+    return user;
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du profil:', error);
+    throw error;
+  }
 };
 
-export const onAuthStateChanged = (auth: any, callback: (user: any) => void) => {
-  return auth.onAuthStateChanged(callback);
+export const sendPasswordResetEmail = (auth: Auth, email: string): Promise<void> => {
+  return firebaseSendPasswordResetEmail(auth, email);
 };
 
-export const Timestamp = {
-  now: () => ({ toDate: () => new Date() })
+export const onAuthStateChanged = (auth: Auth, callback: (user: FirebaseUser | null) => void) => {
+  return firebaseOnAuthStateChanged(auth, callback);
 };
+
+// Exporter les fonctions Firestore
+export const doc = firestoreDoc;
+export const setDoc = firestoreSetDoc;
+export const getDoc = firestoreGetDoc;
+export const collection = firestoreCollection;
+export const getDocs = firestoreGetDocs;
+export const updateDoc = firestoreUpdateDoc;
+export const deleteDoc = firestoreDeleteDoc;
+export const query = firestoreQuery;
+export const where = firestoreWhere;
+export const orderBy = firestoreOrderBy;
+export const limit = firestoreLimit;
+export const Timestamp = FirebaseTimestamp;
 
 export default { auth, db };
